@@ -22,12 +22,9 @@ public class DemoApplicationTests {
 	@Autowired
 	private MockMvc mockMvc;
 
-	@Autowired
-	private VisitsRepository visitsRepository;
-
 	@Before
 	public void setUp() throws Exception {
-		visitsRepository.deleteAll();
+
 	}
 
 	@Test

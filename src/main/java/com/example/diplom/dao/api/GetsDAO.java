@@ -1,6 +1,6 @@
-package com.example.diplom.DAO.api;
+package com.example.diplom.dao.api;
 
-import com.example.diplom.Entity.Gets;
+import com.example.diplom.entity.Gets;
 
 
 public interface GetsDAO extends DAO<Gets> {

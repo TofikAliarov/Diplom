@@ -1,7 +1,7 @@
-package com.example.diplom.DAO.impl;
+package com.example.diplom.dao.impl;
 
-import com.example.diplom.DAO.api.GetsDAO;
-import com.example.diplom.Entity.Gets;
+import com.example.diplom.dao.api.GetsDAO;
+import com.example.diplom.entity.Gets;
 
 import java.util.List;
 

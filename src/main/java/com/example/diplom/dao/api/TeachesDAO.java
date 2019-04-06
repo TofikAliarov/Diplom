@@ -1,7 +1,7 @@
-package com.example.diplom.DAO.api;
+package com.example.diplom.dao.api;
 
 
-import com.example.diplom.Entity.Teaches;
+import com.example.diplom.entity.Teaches;
 
 
 public interface TeachesDAO extends DAO<Teaches> {

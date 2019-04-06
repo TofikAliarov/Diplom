@@ -1,14 +1,11 @@
-package com.example.diplom.Entity;
+package com.example.diplom.entity;
 
 
 import java.util.Date;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
-@Getter
-@Setter
-@ToString
+import lombok.Data;
+
+@Data
 public class Gets  {
 
     private int studentid;

@@ -1,7 +1,7 @@
-package com.example.diplom.DAO.impl;
+package com.example.diplom.dao.impl;
 
-import com.example.diplom.DAO.api.GroupDAO;
-import com.example.diplom.Entity.Group;
+import com.example.diplom.dao.api.GroupDAO;
+import com.example.diplom.entity.Group;
 
 import java.util.List;
 

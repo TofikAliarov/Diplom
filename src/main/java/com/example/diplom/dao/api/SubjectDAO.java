@@ -1,6 +1,6 @@
-package com.example.diplom.DAO.api;
+package com.example.diplom.dao.api;
 
-import com.example.diplom.Entity.Subject;
+import com.example.diplom.entity.Subject;
 
 import java.util.List;
 

@@ -20,16 +20,6 @@ public class AdminDAOimpl extends AbstrctDAO implements AdminDAO {
     }
 
     @Override
-    public List<Admin> getAll() {
-        return null;
-    }
-
-    @Override
-    public Admin getById(Integer id) {
-        return null;
-    }
-
-    @Override
     public List<Admin> getBy(String fieldName, String value) {
         return null;
     }

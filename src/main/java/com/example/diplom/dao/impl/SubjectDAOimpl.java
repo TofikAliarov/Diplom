@@ -24,16 +24,6 @@ public class SubjectDAOimpl extends AbstrctDAO implements SubjectDAO {
     }
 
     @Override
-    public List<Subject> getAll() {
-        return null;
-    }
-
-    @Override
-    public Subject getById(Integer id) {
-        return null;
-    }
-
-    @Override
     public List<Subject> getBy(String fieldName, String value) {
         return null;
     }

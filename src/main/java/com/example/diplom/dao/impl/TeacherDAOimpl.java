@@ -24,16 +24,6 @@ public class TeacherDAOimpl extends AbstrctDAO implements TeacherDAO {
     }
 
     @Override
-    public List<Teacher> getAll() {
-        return null;
-    }
-
-    @Override
-    public Teacher getById(Integer id) {
-        return null;
-    }
-
-    @Override
     public List<Teacher> getBy(String fieldName, String value) {
         return null;
     }

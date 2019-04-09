@@ -18,16 +18,6 @@ public class GetsDAOimpl extends AbstrctDAO implements GetsDAO {
     }
 
     @Override
-    public List<Gets> getAll() {
-        return null;
-    }
-
-    @Override
-    public Gets getById(Integer id) {
-        return null;
-    }
-
-    @Override
     public List<Gets> getBy(String fieldName, String value) {
         return null;
     }

@@ -23,16 +23,6 @@ public class GroupDAOimpl extends AbstrctDAO implements GroupDAO {
     }
 
     @Override
-    public List<Group> getAll() {
-        return null;
-    }
-
-    @Override
-    public Group getById(Integer id) {
-        return null;
-    }
-
-    @Override
     public List<Group> getBy(String fieldName, String value) {
         return null;
     }

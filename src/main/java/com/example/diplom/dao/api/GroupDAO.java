@@ -1,14 +1,10 @@
 package com.example.diplom.dao.api;
 
-import com.example.diplom.entity.Group;
+import com.example.diplom.entity.GroupEntity;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+@Repository
+public interface GroupDAO extends CrudRepository<GroupEntity, Integer>{
 
-
-public interface GroupDAO extends DAO<Group>{
-    boolean update(Group group, String id);
-
-    boolean insert(Group group);
-
-    List<Group> groupsearch(String searchRequest);
 }

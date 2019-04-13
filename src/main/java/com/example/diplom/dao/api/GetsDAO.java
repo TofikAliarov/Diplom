@@ -1,11 +1,10 @@
 package com.example.diplom.dao.api;
 
-import com.example.diplom.entity.Gets;
 
+import com.example.diplom.entity.GetsEntity;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface GetsDAO extends DAO<Gets> {
-    boolean update(Gets gets, String id);
-
-    boolean insert(Gets gets);
-
+@Repository
+public interface GetsDAO extends CrudRepository <GetsEntity, Integer> {
 }

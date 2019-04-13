@@ -3,7 +3,8 @@ package com.example.diplom.dao.impl;
 
 import com.example.diplom.dao.api.DAO;
 import com.example.diplom.dao.api.StudentDAO;
-import com.example.diplom.entity.Student;
+import com.example.diplom.entity.StudentEntity;
+import com.example.diplom.entity.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -29,7 +30,7 @@ public class StudentDAOimpl extends AbstrctDAO implements DAO {
         return false;
     }
 
-    public List<Student> getAll() {
-        return (List<Student>) studentDAO.findAll();
+    public List<StudentEntity> getAll() {
+        return (List<StudentEntity>) studentDAO.findAll();
     }
 }

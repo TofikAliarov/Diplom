@@ -1,29 +1,23 @@
 package com.example.diplom.dao.impl;
 
+import com.example.diplom.dao.api.DAO;
 import com.example.diplom.dao.api.GroupDAO;
-import com.example.diplom.entity.Group;
+import com.example.diplom.entity.GroupEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-public class GroupDAOimpl extends AbstrctDAO implements GroupDAO {
+@Repository
+@Transactional
+public class GroupDAOimpl extends AbstrctDAO implements DAO {
+
+    @Autowired
+    private GroupDAO groupDAO;
 
     @Override
-    public boolean update(Group group, String id) {
-        return false;
-    }
-
-    @Override
-    public boolean insert(Group group) {
-        return false;
-    }
-
-    @Override
-    public List<Group> groupsearch(String searchRequest) {
-        return null;
-    }
-
-    @Override
-    public List<Group> getBy(String fieldName, String value) {
+    public List getBy(String fieldName, String value) {
         return null;
     }
 
@@ -31,4 +25,9 @@ public class GroupDAOimpl extends AbstrctDAO implements GroupDAO {
     public boolean delete(Integer id) {
         return false;
     }
+
+    public List<GroupEntity> getAll() {
+        return (List<GroupEntity>) groupDAO.findAll();
+    }
+
 }

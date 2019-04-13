@@ -1,15 +1,10 @@
 package com.example.diplom.dao.api;
 
-import com.example.diplom.entity.Subject;
+import com.example.diplom.entity.SubjectEntity;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+@Repository
+public interface SubjectDAO extends CrudRepository <SubjectEntity, Integer> {
 
-public interface SubjectDAO extends DAO<Subject> {
-
-    boolean update(Subject subject, String id);
-
-    boolean insert(Subject subject);
-
-
-    List<Subject> subjectsearch(String searchRequest);
 }

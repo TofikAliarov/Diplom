@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 06 2019 г., 15:43
+-- Время создания: Апр 13 2019 г., 13:42
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -31,10 +31,18 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
-  `login` text NOT NULL,
+  `login` varchar(16) NOT NULL,
   `password` varchar(16) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `admin`
+--
+
+INSERT INTO `admin` (`id`, `login`, `password`) VALUES
+(1, 'admin1', '12345'),
+(2, 'admin2', '12345');
 
 -- --------------------------------------------------------
 
@@ -44,12 +52,25 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 DROP TABLE IF EXISTS `gets`;
 CREATE TABLE IF NOT EXISTS `gets` (
-  `Studentid` int(11) NOT NULL,
-  `Subjectid` int(11) NOT NULL,
-  `Date` date NOT NULL,
-  `Mark` int(11) NOT NULL,
-  KEY `Studentid` (`Studentid`,`Subjectid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `studen_tid` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `mark` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Studentid` (`studen_tid`,`subject_id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `gets`
+--
+
+INSERT INTO `gets` (`id`, `studen_tid`, `subject_id`, `date`, `mark`) VALUES
+(1, 1, 1, '2019-04-01', 5),
+(2, 1, 2, '2019-04-03', 4),
+(3, 2, 2, '2019-04-04', 3),
+(4, 2, 1, '2019-04-01', 3);
 
 -- --------------------------------------------------------
 
@@ -59,19 +80,22 @@ CREATE TABLE IF NOT EXISTS `gets` (
 
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE IF NOT EXISTS `group` (
-  `Groupname` varchar(5) COLLATE utf8_bin NOT NULL,
-  `Teacherid` int(11) NOT NULL,
-  PRIMARY KEY (`Groupname`),
-  KEY `Teacherid` (`Teacherid`),
-  KEY `Groupname` (`Groupname`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(5) COLLATE utf8_bin NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Teacherid` (`teacher_id`),
+  KEY `Groupname` (`group_name`),
+  KEY `group_name` (`group_name`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Дамп данных таблицы `group`
 --
 
-INSERT INTO `group` (`Groupname`, `Teacherid`) VALUES
-('5cv', 1);
+INSERT INTO `group` (`id`, `group_name`, `teacher_id`) VALUES
+(2, 'Tm85b', 1);
 
 -- --------------------------------------------------------
 
@@ -82,17 +106,25 @@ INSERT INTO `group` (`Groupname`, `Teacherid`) VALUES
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` text COLLATE utf8_bin NOT NULL,
+  `login` varchar(16) COLLATE utf8_bin NOT NULL,
   `password` varchar(16) COLLATE utf8_bin NOT NULL,
-  `name` text COLLATE utf8_bin NOT NULL,
-  `last_name` text COLLATE utf8_bin NOT NULL,
-  `patronymic` text COLLATE utf8_bin NOT NULL,
-  `groupname` varchar(5) COLLATE utf8_bin NOT NULL,
+  `name` varchar(20) COLLATE utf8_bin NOT NULL,
+  `last_name` varchar(20) COLLATE utf8_bin NOT NULL,
+  `patronymic` varchar(20) COLLATE utf8_bin NOT NULL,
+  `group_name` varchar(5) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Studentid` (`id`),
-  KEY `Groupid` (`groupname`),
+  KEY `Groupid` (`group_name`),
   KEY `Studentid_2` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Дамп данных таблицы `student`
+--
+
+INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`, `group_name`) VALUES
+(2, 's1502', '12345', 'Maria', 'Bugay', 'Anatolievna', ''),
+(1, 's1501', '54321', 'Tofik', 'Aliarv', 'Shamilovich', 'Tm85b');
 
 -- --------------------------------------------------------
 
@@ -106,7 +138,15 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `subjectname` text COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`Subjectid`),
   KEY `Subjectid` (`Subjectid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Дамп данных таблицы `subject`
+--
+
+INSERT INTO `subject` (`Subjectid`, `subjectname`) VALUES
+(1, 'Высшая математика'),
+(2, 'Сопромат');
 
 -- --------------------------------------------------------
 
@@ -117,14 +157,22 @@ CREATE TABLE IF NOT EXISTS `subject` (
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE IF NOT EXISTS `teacher` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
-  `login` text COLLATE utf8_bin NOT NULL,
+  `login` varchar(16) COLLATE utf8_bin NOT NULL,
   `password` varchar(16) COLLATE utf8_bin NOT NULL,
-  `name` text COLLATE utf8_bin NOT NULL,
-  `last_name` text COLLATE utf8_bin NOT NULL,
-  `patronymic` text COLLATE utf8_bin NOT NULL,
+  `name` varchar(20) COLLATE utf8_bin NOT NULL,
+  `last_name` varchar(20) COLLATE utf8_bin NOT NULL,
+  `patronymic` varchar(20) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Teacherid` (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Дамп данных таблицы `teacher`
+--
+
+INSERT INTO `teacher` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`) VALUES
+(2, 'Konov', '12345', 'Olga', 'Konovalenko', 'Evgenevna'),
+(1, 'Bondar', '12345', 'Marina', 'Bondarenko', 'Alexandrovna');
 
 -- --------------------------------------------------------
 
@@ -134,11 +182,22 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 
 DROP TABLE IF EXISTS `teaches`;
 CREATE TABLE IF NOT EXISTS `teaches` (
-  `Teacherid` int(11) NOT NULL,
-  `Groupname` varchar(5) NOT NULL,
-  `Subjectid` int(11) NOT NULL,
-  KEY `Teacherid` (`Teacherid`,`Groupname`,`Subjectid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `teacher_id` int(11) NOT NULL,
+  `group_name` varchar(5) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Teacherid` (`teacher_id`,`group_name`,`subject_id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `teaches`
+--
+
+INSERT INTO `teaches` (`id`, `teacher_id`, `group_name`, `subject_id`) VALUES
+(1, 1, 'Tm85b', 1),
+(2, 2, 'Tm85b', 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,8 +1,8 @@
 package com.example.diplom.controllers;
 
 
-import com.example.diplom.dao.api.AdminDAO;
-import com.example.diplom.dao.impl.AdminDAOimpl;
+import com.example.diplom.dal.api.AdminDao;
+import com.example.diplom.dal.impl.AdminDAOimpl;
 import com.example.diplom.entity.AdminEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class AdminController {
     @Autowired
     AdminDAOimpl adminDAOimpl;
     @Autowired
-    AdminDAO adminDAO;
+    AdminDao adminDAO;
 
     @Autowired
     JdbcTemplate jdbcTemplate;

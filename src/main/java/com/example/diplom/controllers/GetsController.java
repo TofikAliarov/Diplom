@@ -1,7 +1,7 @@
 package com.example.diplom.controllers;
 
-import com.example.diplom.dao.api.GetsDAO;
-import com.example.diplom.dao.impl.GetsDAOimpl;
+import com.example.diplom.dal.api.GetsDAO;
+import com.example.diplom.dal.impl.GetsDAOimpl;
 import com.example.diplom.entity.GetsEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

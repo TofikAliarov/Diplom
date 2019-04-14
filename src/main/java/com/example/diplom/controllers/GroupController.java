@@ -1,7 +1,7 @@
 package com.example.diplom.controllers;
 
-import com.example.diplom.dao.api.GroupDAO;
-import com.example.diplom.dao.impl.GroupDAOimpl;
+import com.example.diplom.dal.api.GroupDAO;
+import com.example.diplom.dal.impl.GroupDAOimpl;
 import com.example.diplom.entity.GroupEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

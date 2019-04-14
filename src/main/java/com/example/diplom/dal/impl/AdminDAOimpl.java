@@ -1,7 +1,7 @@
-package com.example.diplom.dao.impl;
+package com.example.diplom.dal.impl;
 
-import com.example.diplom.dao.api.AdminDAO;
-import com.example.diplom.dao.api.DAO;
+import com.example.diplom.dal.api.AdminDao;
+import com.example.diplom.dal.api.DAO;
 import com.example.diplom.entity.AdminEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import java.util.List;
 public class AdminDAOimpl extends AbstrctDAO implements DAO {
 
     @Autowired
-    private AdminDAO adminDAO;
+    private AdminDao adminDAO;
 
     @Override
     public List getBy(String fieldName, String value) {

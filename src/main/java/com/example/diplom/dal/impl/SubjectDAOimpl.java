@@ -1,21 +1,21 @@
-package com.example.diplom.dao.impl;
+package com.example.diplom.dal.impl;
 
 
-import com.example.diplom.dao.api.DAO;
-import com.example.diplom.dao.api.TeachesDAO;
-import com.example.diplom.entity.TeachesEntity;
+import com.example.diplom.dal.api.DAO;
+import com.example.diplom.dal.api.SubjectDAO;
+import com.example.diplom.entity.SubjectEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 @Transactional
-public class TeachesDAOimpl extends AbstrctDAO implements DAO {
+public class SubjectDAOimpl extends AbstrctDAO implements DAO {
+
     @Autowired
-    private TeachesDAO teachesDAO;
+    private SubjectDAO subjectDAO;
 
     @Override
     public List getBy(String fieldName, String value) {
@@ -27,7 +27,7 @@ public class TeachesDAOimpl extends AbstrctDAO implements DAO {
         return false;
     }
 
-    public List<TeachesEntity> getAll() {
-        return (List<TeachesEntity>) teachesDAO.findAll();
+    public List<SubjectEntity> getAll() {
+        return (List<SubjectEntity>) subjectDAO.findAll();
     }
 }

@@ -1,7 +1,7 @@
-package com.example.diplom.dao.impl;
+package com.example.diplom.dal.impl;
 
-import com.example.diplom.dao.api.DAO;
-import com.example.diplom.dao.api.GroupDAO;
+import com.example.diplom.dal.api.DAO;
+import com.example.diplom.dal.api.GroupDAO;
 import com.example.diplom.entity.GroupEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -1,5 +1,7 @@
 package com.example.diplom.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -16,6 +18,8 @@ public class StudentEntity {
 
     @Id
     @Column(name = "id")
+    @GenericGenerator(name="IdGeneration" , strategy="increment")
+    @GeneratedValue(generator="IdGeneration")
     public int getId() {
         return id;
     }

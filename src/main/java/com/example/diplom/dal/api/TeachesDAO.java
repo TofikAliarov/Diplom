@@ -1,4 +1,4 @@
-package com.example.diplom.dao.api;
+package com.example.diplom.dal.api;
 
 
 import com.example.diplom.entity.TeachesEntity;

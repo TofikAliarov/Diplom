@@ -1,7 +1,7 @@
 package com.example.diplom.dal.impl;
 
 import com.example.diplom.dal.api.DAO;
-import com.example.diplom.dal.api.GroupDAO;
+import com.example.diplom.dal.api.GroupDao;
 import com.example.diplom.entity.GroupEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,7 @@ import java.util.List;
 public class GroupDAOimpl extends AbstrctDAO implements DAO {
 
     @Autowired
-    private GroupDAO groupDAO;
+    private GroupDao groupDao;
 
     @Override
     public List getBy(String fieldName, String value) {
@@ -27,7 +27,7 @@ public class GroupDAOimpl extends AbstrctDAO implements DAO {
     }
 
     public List<GroupEntity> getAll() {
-        return (List<GroupEntity>) groupDAO.findAll();
+        return (List<GroupEntity>) groupDao.findAll();
     }
 
 }

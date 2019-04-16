@@ -2,7 +2,7 @@ package com.example.diplom.dal.impl;
 
 
 import com.example.diplom.dal.api.DAO;
-import com.example.diplom.dal.api.SubjectDAO;
+import com.example.diplom.dal.api.SubjectDao;
 import com.example.diplom.entity.SubjectEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,7 +15,7 @@ import java.util.List;
 public class SubjectDAOimpl extends AbstrctDAO implements DAO {
 
     @Autowired
-    private SubjectDAO subjectDAO;
+    private SubjectDao subjectDao;
 
     @Override
     public List getBy(String fieldName, String value) {
@@ -28,6 +28,6 @@ public class SubjectDAOimpl extends AbstrctDAO implements DAO {
     }
 
     public List<SubjectEntity> getAll() {
-        return (List<SubjectEntity>) subjectDAO.findAll();
+        return (List<SubjectEntity>) subjectDao.findAll();
     }
 }

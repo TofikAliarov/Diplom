@@ -1,6 +1,6 @@
 package com.example.diplom.controllers;
 
-import com.example.diplom.dal.api.StudentDAO;
+import com.example.diplom.dal.api.StudentDao;
 import com.example.diplom.dal.impl.StudentDAOimpl;
 import com.example.diplom.entity.StudentEntity;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ public class StudentController {
     StudentDAOimpl studentDAOimpl;
 
     @Autowired
-    StudentDAO studentDAO;
+    StudentDao studentDao;
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -30,31 +30,31 @@ public class StudentController {
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     public List<StudentEntity> getAll() {
         LOG.debug("Getting all students");
-        return studentDAO.findAll();
+        return studentDao.findAll();
         }
 
 
     @RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
     public Optional<StudentEntity> getById(@PathVariable("id") String id) {
         LOG.debug("Getting student {}", id);
-        return studentDAO.findById(Integer.decode(id));
+        return studentDao.findById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/students/", method = RequestMethod.DELETE)
     public void deleteAll() {
         LOG.debug("Deleting all students");
-        studentDAO.deleteAll();
+        studentDao.deleteAll();
     }
 
     @RequestMapping(value = "/students/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") String id) {
         LOG.debug("Deleting student {}", id);
-        studentDAO.deleteById(Integer.decode(id));
+        studentDao.deleteById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/students", method = RequestMethod.POST)
     public StudentEntity create(@RequestBody StudentEntity student) {
         LOG.debug("Creating student {}", student);
-        return studentDAO.save(student);
+        return studentDao.save(student);
     }
 }

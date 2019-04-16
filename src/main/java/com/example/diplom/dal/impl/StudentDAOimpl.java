@@ -2,15 +2,13 @@ package com.example.diplom.dal.impl;
 
 
 import com.example.diplom.dal.api.DAO;
-import com.example.diplom.dal.api.StudentDAO;
-import com.example.diplom.entity.StudentEntity;
+import com.example.diplom.dal.api.StudentDao;
 import com.example.diplom.entity.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -18,7 +16,7 @@ import java.util.List;
 public class StudentDAOimpl extends AbstrctDAO implements DAO {
 
     @Autowired
-    private StudentDAO studentDAO;
+    private StudentDao studentDao;
 
     @Override
     public List getBy(String fieldName, String value) {
@@ -31,6 +29,6 @@ public class StudentDAOimpl extends AbstrctDAO implements DAO {
     }
 
     public List<StudentEntity> getAll() {
-        return (List<StudentEntity>) studentDAO.findAll();
+        return (List<StudentEntity>) studentDao.findAll();
     }
 }

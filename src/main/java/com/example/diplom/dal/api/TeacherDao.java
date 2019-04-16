@@ -1,10 +1,10 @@
 package com.example.diplom.dal.api;
 
 import com.example.diplom.entity.TeacherEntity;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TeacherDAO extends CrudRepository<TeacherEntity, Integer> {
+public interface TeacherDao extends JpaRepository<TeacherEntity, Integer> {
 
 }

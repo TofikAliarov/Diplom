@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 public class SubjectController {
     @Autowired
@@ -26,7 +27,7 @@ public class SubjectController {
 
     @RequestMapping(value = "/subjects", method = RequestMethod.GET)
     public List<SubjectEntity> getAll() {
-        LOG.debug("Getting all subjects");
+        LOG.info("Getting all subjects");
 
         return subjectDao.findAll();
     }
@@ -34,25 +35,25 @@ public class SubjectController {
 
     @RequestMapping(value = "/subjects/{id}", method = RequestMethod.GET)
     public Optional<SubjectEntity> getById(@PathVariable("id") String id) {
-        LOG.debug("Getting subject {}", id);
+        LOG.info("Getting subject {}", id);
         return subjectDao.findById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/subjects/", method = RequestMethod.DELETE)
     public void deleteAll() {
-        LOG.debug("Deleting all subjects");
+        LOG.info("Deleting all subjects");
         subjectDao.deleteAll();
     }
 
     @RequestMapping(value = "/subjects/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") String id) {
-        LOG.debug("Deleting subject {}", id);
+        LOG.info("Deleting subject {}", id);
         subjectDao.deleteById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/subjects", method = RequestMethod.POST)
     public SubjectEntity create(@RequestBody SubjectEntity subject) {
-        LOG.debug("Creating subject {}", subject);
+        LOG.info("Creating subject {}", subject);
         return subjectDao.save(subject);
     }
 }

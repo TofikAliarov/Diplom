@@ -2,7 +2,7 @@ package com.example.diplom.dal.impl;
 
 import com.example.diplom.dal.api.DAO;
 import com.example.diplom.dal.api.GroupDao;
-import com.example.diplom.entity.GroupEntity;
+import com.example.diplom.entity.GroupsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,8 +26,8 @@ public class GroupDAOimpl extends AbstrctDAO implements DAO {
         return false;
     }
 
-    public List<GroupEntity> getAll() {
-        return (List<GroupEntity>) groupDao.findAll();
+    public List<GroupsEntity> getAll() {
+        return (List<GroupsEntity>) groupDao.findAll();
     }
 
 }

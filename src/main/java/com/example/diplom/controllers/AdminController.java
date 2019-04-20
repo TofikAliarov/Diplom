@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 public class AdminController {
 
@@ -29,7 +30,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admins", method = RequestMethod.GET)
     public List<AdminEntity> getAll() {
-        LOG.debug("Getting all admins");
+        LOG.info("Getting all admins");
 
         return adminDao.findAll();
     }
@@ -37,25 +38,25 @@ public class AdminController {
 
     @RequestMapping(value = "/admins/{id}", method = RequestMethod.GET)
     public Optional<AdminEntity> getById(@PathVariable("id") String id) {
-        LOG.debug("Getting admin {}", id);
+        LOG.info("Getting admin {}", id);
         return adminDao.findById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/admins/", method = RequestMethod.DELETE)
     public void deleteAll() {
-        LOG.debug("Deleting all admins");
+        LOG.info("Deleting all admins");
         adminDao.deleteAll();
     }
 
     @RequestMapping(value = "/admins/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") String id) {
-        LOG.debug("Deleting admin {}", id);
+        LOG.info("Deleting admin {}", id);
         adminDao.deleteById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/admins", method = RequestMethod.POST)
     public AdminEntity create(@RequestBody AdminEntity admin) {
-        LOG.debug("Creating admin {}", admin);
+        LOG.info("Creating admin {}", admin);
         return adminDao.save(admin);
     }
 }

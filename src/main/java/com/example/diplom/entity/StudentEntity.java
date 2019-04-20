@@ -1,7 +1,5 @@
 package com.example.diplom.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -18,8 +16,6 @@ public class StudentEntity {
 
     @Id
     @Column(name = "id")
-    @GenericGenerator(name="IdGeneration" , strategy="increment")
-    @GeneratedValue(generator="IdGeneration")
     public int getId() {
         return id;
     }
@@ -59,7 +55,7 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "lastName")
+    @Column(name = "last_Name")
     public String getLastName() {
         return lastName;
     }
@@ -79,7 +75,7 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "groupName")
+    @Column(name = "group_Name")
     public String getGroupName() {
         return groupName;
     }

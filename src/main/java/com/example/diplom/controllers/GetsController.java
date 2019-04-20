@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 public class GetsController {
 
@@ -27,7 +28,7 @@ public class GetsController {
 
     @RequestMapping(value = "/gets", method = RequestMethod.GET)
     public List<GetsEntity> getAll() {
-        LOG.debug("Getting all gets");
+        LOG.info("Getting all gets");
 
         return getsDao.findAll();
     }
@@ -35,25 +36,25 @@ public class GetsController {
 
     @RequestMapping(value = "/gets/{id}", method = RequestMethod.GET)
     public Optional<GetsEntity> getById(@PathVariable("id") String id) {
-        LOG.debug("Getting gets {}", id);
+        LOG.info("Getting gets {}", id);
         return getsDao.findById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/gets/", method = RequestMethod.DELETE)
     public void deleteAll() {
-        LOG.debug("Deleting all gets");
+        LOG.info("Deleting all gets");
         getsDao.deleteAll();
     }
 
     @RequestMapping(value = "/gets/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") String id) {
-        LOG.debug("Deleting gets {}", id);
+        LOG.info("Deleting gets {}", id);
         getsDao.deleteById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/gets", method = RequestMethod.POST)
     public GetsEntity create(@RequestBody GetsEntity gets) {
-        LOG.debug("Creating gets {}", gets);
+        LOG.info("Creating gets {}", gets);
         return getsDao.save(gets);
     }
 }

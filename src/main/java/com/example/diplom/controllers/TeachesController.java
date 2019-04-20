@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 public class TeachesController {
 
@@ -27,7 +28,7 @@ public class TeachesController {
 
     @RequestMapping(value = "/teaches", method = RequestMethod.GET)
     public List<TeachesEntity> getAll() {
-        LOG.debug("Getting all teachess");
+        LOG.info("Getting all teachess");
 
         return teachesDao.findAll();
     }
@@ -35,24 +36,24 @@ public class TeachesController {
 
     @RequestMapping(value = "/teaches/{id}", method = RequestMethod.GET)
     public Optional<TeachesEntity> getById(@PathVariable("id") String id) {
-        LOG.debug("Getting teaches {}", id);
+        LOG.info("Getting teaches {}", id);
         return teachesDao.findById(Integer.decode(id));
     }
     @RequestMapping(value = "/teaches/", method = RequestMethod.DELETE)
     public void deleteAll() {
-        LOG.debug("Deleting all teaches");
+        LOG.info("Deleting all teaches");
         teachesDao.deleteAll();
     }
 
     @RequestMapping(value = "/teaches/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") String id) {
-        LOG.debug("Deleting teaches {}", id);
+        LOG.info("Deleting teaches {}", id);
         teachesDao.deleteById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/teaches", method = RequestMethod.POST)
     public TeachesEntity create(@RequestBody TeachesEntity teaches) {
-        LOG.debug("Creating teaches {}", teaches);
+        LOG.info("Creating teaches {}", teaches);
         return teachesDao.save(teaches);
     }
 }

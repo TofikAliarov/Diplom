@@ -3,6 +3,7 @@ package com.example.diplom.controllers;
 import com.example.diplom.dal.api.GroupDao;
 import com.example.diplom.dal.impl.GroupDAOimpl;
 import com.example.diplom.entity.GroupsEntity;
+import com.example.diplom.exception.GroupException;
 import com.example.diplom.exception.StudentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,8 +38,16 @@ public class GroupController {
 
     @RequestMapping(value = "/groups/{id}", method = RequestMethod.GET)
     public Optional<GroupsEntity> getById(@PathVariable("id") String id) {
-        LOG.info("Getting group {}", id);
-        return groupDao.findById(Integer.decode(id));
+        final Optional<GroupsEntity> studentEntity = this.groupDao.findById(Integer.valueOf(id));
+        if (studentEntity  != null) {
+            LOG.info("Getting student {}", id);
+            return groupDao.findById(Integer.valueOf(id));
+        }
+        else
+            LOG.warn("no student", id);
+        throw new GroupException(id);
+
+
     }
 
     @RequestMapping(value = "/groups/", method = RequestMethod.DELETE)

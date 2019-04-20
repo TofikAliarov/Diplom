@@ -3,6 +3,7 @@ package com.example.diplom.controllers;
 import com.example.diplom.dal.api.GetsDao;
 import com.example.diplom.dal.impl.GetsDAOimpl;
 import com.example.diplom.entity.GetsEntity;
+import com.example.diplom.exception.GetsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +37,16 @@ public class GetsController {
 
     @RequestMapping(value = "/gets/{id}", method = RequestMethod.GET)
     public Optional<GetsEntity> getById(@PathVariable("id") String id) {
-        LOG.info("Getting gets {}", id);
-        return getsDao.findById(Integer.decode(id));
+        final Optional<GetsEntity> studentEntity = this.getsDao.findById(Integer.valueOf(id));
+        if (studentEntity  != null) {
+            LOG.info("Getting student {}", id);
+            return getsDao.findById(Integer.valueOf(id));
+        }
+        else
+            LOG.warn("no student", id);
+        throw new GetsException(id);
+
+
     }
 
     @RequestMapping(value = "/gets/", method = RequestMethod.DELETE)

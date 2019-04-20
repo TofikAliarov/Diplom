@@ -4,6 +4,7 @@ package com.example.diplom.controllers;
 import com.example.diplom.dal.api.AdminDao;
 import com.example.diplom.dal.impl.AdminDAOimpl;
 import com.example.diplom.entity.AdminEntity;
+import com.example.diplom.exception.AdminException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,17 @@ public class AdminController {
 
     @RequestMapping(value = "/admins/{id}", method = RequestMethod.GET)
     public Optional<AdminEntity> getById(@PathVariable("id") String id) {
-        LOG.info("Getting admin {}", id);
-        return adminDao.findById(Integer.decode(id));
-    }
+        final Optional<AdminEntity> studentEntity = this.adminDao.findById(Integer.valueOf(id));
+        if (studentEntity  != null) {
+            LOG.info("Getting student {}", id);
+            return adminDao.findById(Integer.valueOf(id));
+        }
+        else
+            LOG.warn("no student", id);
+        throw new AdminException(id);
 
+
+    }
     @RequestMapping(value = "/admins/", method = RequestMethod.DELETE)
     public void deleteAll() {
         LOG.info("Deleting all admins");

@@ -40,7 +40,7 @@ public class StudentController {
     @RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
     public Optional<StudentEntity> getById(@PathVariable("id") String id)  {
         final Optional<StudentEntity> studentEntity = this.studentDao.findById(Integer.valueOf(id));
-        if (studentEntity  == null) {
+        if (studentEntity  != null) {
             LOG.info("Getting student {}", id);
             return studentDao.findById(Integer.valueOf(id));
         }

@@ -1,9 +1,8 @@
 package com.example.diplom.dal.impl;
 
 import com.example.diplom.dal.api.DAO;
-import com.example.diplom.dal.api.GetsDao;
-import com.example.diplom.entity.GetsEntity;
-import org.hibernate.SessionFactory;
+import com.example.diplom.dal.api.MarksDao;
+import com.example.diplom.entity.MarksEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,10 +11,10 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class GetsDAOimpl extends AbstrctDAO implements DAO {
+public class MarksDAOimpl extends AbstrctDAO implements DAO {
 
     @Autowired
-    private GetsDao getsDao;
+    private MarksDao marksDao;
 
     @Override
     public List getBy(String fieldName, String value) {
@@ -27,7 +26,7 @@ public class GetsDAOimpl extends AbstrctDAO implements DAO {
         return false;
     }
 
-    public List<GetsEntity> getAll() {
-        return (List<GetsEntity>) getsDao.findAll();
+    public List<MarksEntity> getAll() {
+        return (List<MarksEntity>) marksDao.findAll();
     }
 }

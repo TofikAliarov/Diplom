@@ -38,13 +38,13 @@ public class GroupController {
 
     @RequestMapping(value = "/groups/{id}", method = RequestMethod.GET)
     public Optional<GroupsEntity> getById(@PathVariable("id") String id) {
-        final Optional<GroupsEntity> studentEntity = this.groupDao.findById(Integer.valueOf(id));
-        if (studentEntity  != null) {
-            LOG.info("Getting student {}", id);
+        final Optional<GroupsEntity> groupsEntity = this.groupDao.findById(Integer.valueOf(id));
+        if (groupsEntity  != null) {
+            LOG.info("Getting group {}", id);
             return groupDao.findById(Integer.valueOf(id));
         }
         else
-            LOG.warn("no student", id);
+            LOG.warn("no group", id);
         throw new GroupException(id);
 
 

@@ -36,12 +36,12 @@ public class SubjectController {
 
     @RequestMapping(value = "/subjects/{id}", method = RequestMethod.GET)
     public Optional<SubjectEntity> getById(@PathVariable("id") String id) {
-        final Optional<SubjectEntity> studentEntity = this.subjectDao.findById(Integer.valueOf(id));
-        if (studentEntity != null) {
-            LOG.info("Getting student {}", id);
+        final Optional<SubjectEntity> subjectEntity = this.subjectDao.findById(Integer.valueOf(id));
+        if (subjectEntity != null) {
+            LOG.info("Getting subject {}", id);
             return subjectDao.findById(Integer.valueOf(id));
         } else
-            LOG.warn("no student", id);
+            LOG.warn("no subject", id);
         throw new SubjectException(id);
     }
 

@@ -39,13 +39,13 @@ public class AdminController {
 
     @RequestMapping(value = "/admins/{id}", method = RequestMethod.GET)
     public Optional<AdminEntity> getById(@PathVariable("id") String id) {
-        final Optional<AdminEntity> studentEntity = this.adminDao.findById(Integer.valueOf(id));
-        if (studentEntity  != null) {
-            LOG.info("Getting student {}", id);
+        final Optional<AdminEntity> adminEntity = this.adminDao.findById(Integer.valueOf(id));
+        if (adminEntity  != null) {
+            LOG.info("Getting admin {}", id);
             return adminDao.findById(Integer.valueOf(id));
         }
         else
-            LOG.warn("no student", id);
+            LOG.warn("no admin", id);
         throw new AdminException(id);
 
 

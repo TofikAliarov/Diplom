@@ -37,13 +37,13 @@ public class TeachesController {
 
     @RequestMapping(value = "/teaches/{id}", method = RequestMethod.GET)
     public Optional<TeachesEntity> getById(@PathVariable("id") String id) {
-        final Optional<TeachesEntity> studentEntity = this.teachesDao.findById(Integer.valueOf(id));
-        if (studentEntity  != null) {
-            LOG.info("Getting student {}", id);
+        final Optional<TeachesEntity> teachesEntity = this.teachesDao.findById(Integer.valueOf(id));
+        if (teachesEntity  != null) {
+            LOG.info("Getting teaches {}", id);
             return teachesDao.findById(Integer.valueOf(id));
         }
         else
-            LOG.warn("no student", id);
+            LOG.warn("no teaches", id);
         throw new TeachesException(id);
 
 

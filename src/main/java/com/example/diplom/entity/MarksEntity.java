@@ -5,9 +5,8 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "gets", schema = "markcheck")
-public class GetsEntity {
-
+@Table(name = "marks", schema = "markcheck")
+public class MarksEntity {
     private int id;
     private int studentId;
     private int subjectId;
@@ -68,7 +67,7 @@ public class GetsEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        GetsEntity that = (GetsEntity) o;
+        MarksEntity that = (MarksEntity) o;
         return id == that.id &&
                 studentId == that.studentId &&
                 subjectId == that.subjectId &&

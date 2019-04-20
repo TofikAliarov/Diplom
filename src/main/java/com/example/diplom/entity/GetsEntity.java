@@ -9,7 +9,7 @@ import java.util.Objects;
 public class GetsEntity {
 
     private int id;
-    private int studenTid;
+    private int studentId;
     private int subjectId;
     private Date date;
     private int mark;
@@ -25,13 +25,13 @@ public class GetsEntity {
     }
 
     @Basic
-    @Column(name = "studen_tid")
-    public int getStudenTid() {
-        return studenTid;
+    @Column(name = "student_id")
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStudenTid(int studenTid) {
-        this.studenTid = studenTid;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
     @Basic
@@ -70,7 +70,7 @@ public class GetsEntity {
         if (o == null || getClass() != o.getClass()) return false;
         GetsEntity that = (GetsEntity) o;
         return id == that.id &&
-                studenTid == that.studenTid &&
+                studentId == that.studentId &&
                 subjectId == that.subjectId &&
                 mark == that.mark &&
                 Objects.equals(date, that.date);
@@ -79,6 +79,6 @@ public class GetsEntity {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, studenTid, subjectId, date, mark);
+        return Objects.hash(id, studentId, subjectId, date, mark);
     }
 }

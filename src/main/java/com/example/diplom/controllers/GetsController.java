@@ -7,7 +7,6 @@ import com.example.diplom.exception.GetsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +18,9 @@ public class GetsController {
 
     @Autowired
     GetsDAOimpl getsDAOimpl;
-    @Autowired
-    GetsDao getsDao;
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    GetsDao getsDao;
 
     final static Logger LOG = LoggerFactory.getLogger(TeacherController.class);
 
@@ -38,15 +35,12 @@ public class GetsController {
     @RequestMapping(value = "/gets/{id}", method = RequestMethod.GET)
     public Optional<GetsEntity> getById(@PathVariable("id") String id) {
         final Optional<GetsEntity> studentEntity = this.getsDao.findById(Integer.valueOf(id));
-        if (studentEntity  != null) {
+        if (studentEntity != null) {
             LOG.info("Getting student {}", id);
             return getsDao.findById(Integer.valueOf(id));
-        }
-        else
+        } else
             LOG.warn("no student", id);
         throw new GetsException(id);
-
-
     }
 
     @RequestMapping(value = "/gets/", method = RequestMethod.DELETE)
@@ -65,5 +59,11 @@ public class GetsController {
     public GetsEntity create(@RequestBody GetsEntity gets) {
         LOG.info("Creating gets {}", gets);
         return getsDao.save(gets);
+    }
+
+    @RequestMapping(value = "/gets/students", method = RequestMethod.GET)
+    public List<GetsEntity> getGetsByStudentId(@RequestParam (value = "id") int studentId) {
+        LOG.info("Getting all gets for student {}", studentId);
+        return getsDao.getByStudentId(studentId);
     }
 }

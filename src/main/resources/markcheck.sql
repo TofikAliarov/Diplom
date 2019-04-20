@@ -135,7 +135,7 @@ INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronym
 DROP TABLE IF EXISTS `subject`;
 CREATE TABLE IF NOT EXISTS `subject` (
   `Subjectid` int(6) NOT NULL AUTO_INCREMENT,
-  `subjectname` text COLLATE utf8_bin NOT NULL,
+  `subjectName` text COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`Subjectid`),
   KEY `Subjectid` (`Subjectid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
 -- Дамп данных таблицы `subject`
 --
 
-INSERT INTO `subject` (`Subjectid`, `subjectname`) VALUES
+INSERT INTO `subject` (`Subjectid`, `subjectName`) VALUES
 (1, 'Высшая математика'),
 (2, 'Сопромат');
 

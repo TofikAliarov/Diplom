@@ -6,27 +6,27 @@ import java.util.Objects;
 @Entity
 @Table(name = "subject", schema = "markcheck")
 public class SubjectEntity {
-    private int subjectid;
-    private String subjectname;
+    private int subjectId;
+    private String subjectName;
 
     @Id
     @Column(name = "Subjectid")
-    public int getSubjectid() {
-        return subjectid;
+    public int getSubjectId() {
+        return subjectId;
     }
 
-    public void setSubjectid(int subjectid) {
-        this.subjectid = subjectid;
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 
     @Basic
-    @Column(name = "subjectname")
-    public String getSubjectname() {
-        return subjectname;
+    @Column(name = "subjectName")
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setSubjectname(String subjectname) {
-        this.subjectname = subjectname;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
     @Override
@@ -34,13 +34,13 @@ public class SubjectEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SubjectEntity that = (SubjectEntity) o;
-        return subjectid == that.subjectid &&
-                Objects.equals(subjectname, that.subjectname);
+        return subjectId == that.subjectId &&
+                Objects.equals(subjectName, that.subjectName);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(subjectid, subjectname);
+        return Objects.hash(subjectId, subjectName);
     }
 }

@@ -37,15 +37,12 @@ public class SubjectController {
     @RequestMapping(value = "/subjects/{id}", method = RequestMethod.GET)
     public Optional<SubjectEntity> getById(@PathVariable("id") String id) {
         final Optional<SubjectEntity> studentEntity = this.subjectDao.findById(Integer.valueOf(id));
-        if (studentEntity  != null) {
+        if (studentEntity != null) {
             LOG.info("Getting student {}", id);
             return subjectDao.findById(Integer.valueOf(id));
-        }
-        else
+        } else
             LOG.warn("no student", id);
         throw new SubjectException(id);
-
-
     }
 
     @RequestMapping(value = "/subjects/", method = RequestMethod.DELETE)

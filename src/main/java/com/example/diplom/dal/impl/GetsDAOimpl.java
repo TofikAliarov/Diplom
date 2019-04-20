@@ -3,6 +3,7 @@ package com.example.diplom.dal.impl;
 import com.example.diplom.dal.api.DAO;
 import com.example.diplom.dal.api.GetsDao;
 import com.example.diplom.entity.GetsEntity;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,6 @@ import java.util.List;
 @Repository
 @Transactional
 public class GetsDAOimpl extends AbstrctDAO implements DAO {
-
 
     @Autowired
     private GetsDao getsDao;
@@ -30,5 +30,4 @@ public class GetsDAOimpl extends AbstrctDAO implements DAO {
     public List<GetsEntity> getAll() {
         return (List<GetsEntity>) getsDao.findAll();
     }
-
 }

@@ -3,7 +3,7 @@ package com.example.diplom.controllers;
 import com.example.diplom.dal.api.MarksDao;
 import com.example.diplom.dal.impl.MarksDAOimpl;
 import com.example.diplom.entity.MarksEntity;
-import com.example.diplom.exception.GetsException;
+import com.example.diplom.exception.MarksException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,7 @@ public class MarksController {
             return marksDao.findById(Integer.valueOf(id));
         } else
             LOG.warn("no marks", id);
-        throw new GetsException(id);
+        throw new MarksException(id);
     }
 
     @RequestMapping(value = "/marks/", method = RequestMethod.DELETE)
@@ -66,4 +66,10 @@ public class MarksController {
         LOG.info("Getting all marks for student {}", studentId);
         return marksDao.getByStudentId(studentId);
     }
+
+//    @RequestMapping(value = "/marks/students/subject", method = RequestMethod.GET)
+//    public List<MarksEntity> getGetsByStudentIdAndSubject(@RequestParam (value = "studentId") int studentId, @RequestParam(value = "subjectId") int subjectId) {
+//        LOG.info("Getting all marks for student {} ", studentId, "and subject {}", subjectId);
+//        return marksDao.getByStudentAndSubject(studentId, subjectId);
+//    }
 }

@@ -45,7 +45,7 @@ public class SubjectController {
         throw new SubjectException(id);
     }
 
-    @RequestMapping(value = "/subjects/", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/subjects", method = RequestMethod.DELETE)
     public void deleteAll() {
         LOG.info("Deleting all subjects");
         subjectDao.deleteAll();

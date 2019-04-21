@@ -17,6 +17,6 @@ public interface MarksDao extends JpaRepository<MarksEntity, Integer> {
     public List<MarksEntity> getByStudentId(@Param("id") int id);
 
     @Query("SELECT gets FROM MarksEntity gets WHERE student_id = :studentId AND subject_id = :subjectId")
-    public List<MarksEntity> getByStudentAndSubject(@Param("studentId") int studentId,
-                                                   @Param("subjectId") int subjectId);
+    public List<MarksEntity> getBySubjectIdAndStudentId(@Param("studentId") int studentId,
+                                                        @Param("subjectId") int subjectId);
 }

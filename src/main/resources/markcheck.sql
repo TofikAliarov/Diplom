@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 13 2019 г., 13:42
+-- Время создания: Апр 21 2019 г., 10:45
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -47,55 +47,54 @@ INSERT INTO `admin` (`id`, `login`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gets`
+-- Структура таблицы `groups`
 --
 
-DROP TABLE IF EXISTS `gets`;
-CREATE TABLE IF NOT EXISTS `gets` (
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `studen_tid` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `mark` int(11) NOT NULL,
+  `groups_name` varchar(5) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `Studentid` (`studen_tid`,`subject_id`),
+  KEY `teacher_id` (`teacher_id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Дамп данных таблицы `gets`
+-- Дамп данных таблицы `groups`
 --
 
-INSERT INTO `gets` (`id`, `studen_tid`, `subject_id`, `date`, `mark`) VALUES
-(1, 1, 1, '2019-04-01', 5),
-(2, 1, 2, '2019-04-03', 4),
-(3, 2, 2, '2019-04-04', 3),
-(4, 2, 1, '2019-04-01', 3);
+INSERT INTO `groups` (`id`, `groups_name`, `teacher_id`) VALUES
+(1, 'eedsf', 2),
+(2, 'dsfsd', 1);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `group`
+-- Структура таблицы `marks`
 --
 
-DROP TABLE IF EXISTS `group`;
-CREATE TABLE IF NOT EXISTS `group` (
+DROP TABLE IF EXISTS `marks`;
+CREATE TABLE IF NOT EXISTS `marks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_name` varchar(5) COLLATE utf8_bin NOT NULL,
-  `teacher_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `mark` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `Teacherid` (`teacher_id`),
-  KEY `Groupname` (`group_name`),
-  KEY `group_name` (`group_name`),
+  KEY `Studentid` (`student_id`,`subject_id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Дамп данных таблицы `group`
+-- Дамп данных таблицы `marks`
 --
 
-INSERT INTO `group` (`id`, `group_name`, `teacher_id`) VALUES
-(2, 'Tm85b', 1);
+INSERT INTO `marks` (`id`, `student_id`, `subject_id`, `date`, `mark`) VALUES
+(1, 1, 1, '2019-04-01', 5),
+(2, 1, 2, '2019-04-03', 4),
+(3, 2, 2, '2019-04-04', 3),
+(4, 2, 1, '2019-04-01', 3);
 
 -- --------------------------------------------------------
 
@@ -134,17 +133,17 @@ INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronym
 
 DROP TABLE IF EXISTS `subject`;
 CREATE TABLE IF NOT EXISTS `subject` (
-  `Subjectid` int(6) NOT NULL AUTO_INCREMENT,
-  `subjectName` text COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`Subjectid`),
-  KEY `Subjectid` (`Subjectid`)
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `subject_name` text COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Subjectid` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Дамп данных таблицы `subject`
 --
 
-INSERT INTO `subject` (`Subjectid`, `subjectName`) VALUES
+INSERT INTO `subject` (`id`, `subject_name`) VALUES
 (1, 'Высшая математика'),
 (2, 'Сопромат');
 

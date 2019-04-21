@@ -4,10 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value= HttpStatus.NOT_FOUND, reason="no mark")
-public class GetsException extends RuntimeException{
+public class MarksException extends RuntimeException{
 
 
-    public GetsException(String message) {
+    public MarksException(String message) {
         super(message);
     }
 

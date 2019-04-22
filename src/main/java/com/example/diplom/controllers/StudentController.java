@@ -19,7 +19,7 @@ import java.util.Optional;
 @RestController
 public class StudentController {
 
-   @Autowired
+    @Autowired
     StudentDAOimpl studentDAOimpl;
 
     @Autowired
@@ -34,30 +34,22 @@ public class StudentController {
     public List<StudentEntity> getAll() {
         LOG.info("Getting all students");
         return studentDao.findAll();
-        }
+    }
 
 
     @RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
-    public Optional<StudentEntity> getById(@PathVariable("id") String id)  {
+    public Optional<StudentEntity> getById(@PathVariable("id") String id) {
         final Optional<StudentEntity> studentEntity = this.studentDao.findById(Integer.valueOf(id));
-        if (studentEntity  != null) {
+        if (studentEntity != null) {
             LOG.info("Getting student {}", id);
             return studentDao.findById(Integer.valueOf(id));
-        }
-        else
+        } else
             LOG.warn("no student", id);
         throw new StudentException(id);
 
 
-}
+    }
 
-
-
-//    @RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
-//    public Optional<StudentEntity> getById(@PathVariable("id") String id){
-//        LOG.info("Getting student {}", id);
-//        return studentDao.findById(Integer.decode(id));
-//    }
 
     @RequestMapping(value = "/students/", method = RequestMethod.DELETE)
     public void deleteAll() {
@@ -75,5 +67,11 @@ public class StudentController {
     public StudentEntity create(@RequestBody StudentEntity student) {
         LOG.info("Creating student {}", student);
         return studentDao.save(student);
+    }
+
+    @RequestMapping(value = "/students/groups", method = RequestMethod.GET)
+    public List<StudentEntity> getGetsByStudentId(@RequestParam(value = "id") int group_id) {
+        LOG.info("Getting all of group {}", group_id);
+        return studentDao.getStudentsGroup(group_id);
     }
 }

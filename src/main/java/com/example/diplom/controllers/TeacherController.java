@@ -38,11 +38,10 @@ public class TeacherController {
     @RequestMapping(value = "/teachers/{id}", method = RequestMethod.GET)
     public Optional<TeacherEntity> getById(@PathVariable("id") String id) {
         final Optional<TeacherEntity> teacherEntity = this.teacherDao.findById(Integer.valueOf(id));
-        if (teacherEntity  != null) {
+        if (teacherEntity != null) {
             LOG.info("Getting teacher {}", id);
             return teacherDao.findById(Integer.valueOf(id));
-        }
-        else
+        } else
             LOG.warn("no teacher", id);
         throw new TeacherException(id);
 

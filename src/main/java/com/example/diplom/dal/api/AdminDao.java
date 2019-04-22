@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdminDao extends JpaRepository<AdminEntity,Integer> {
+public interface AdminDao extends JpaRepository<AdminEntity, Integer> {
 
 
 }

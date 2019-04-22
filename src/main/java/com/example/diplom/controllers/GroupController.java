@@ -39,11 +39,10 @@ public class GroupController {
     @RequestMapping(value = "/groups/{id}", method = RequestMethod.GET)
     public Optional<GroupsEntity> getById(@PathVariable("id") String id) {
         final Optional<GroupsEntity> groupsEntity = this.groupDao.findById(Integer.valueOf(id));
-        if (groupsEntity  != null) {
+        if (groupsEntity != null) {
             LOG.info("Getting group {}", id);
             return groupDao.findById(Integer.valueOf(id));
-        }
-        else
+        } else
             LOG.warn("no group", id);
         throw new GroupException(id);
 
@@ -67,4 +66,6 @@ public class GroupController {
         LOG.info("Creating groups {}", group);
         return groupDao.save(group);
     }
+
+
 }

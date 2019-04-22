@@ -38,16 +38,16 @@ public class TeachesController {
     @RequestMapping(value = "/teaches/{id}", method = RequestMethod.GET)
     public Optional<TeachesEntity> getById(@PathVariable("id") String id) {
         final Optional<TeachesEntity> teachesEntity = this.teachesDao.findById(Integer.valueOf(id));
-        if (teachesEntity  != null) {
+        if (teachesEntity != null) {
             LOG.info("Getting teaches {}", id);
             return teachesDao.findById(Integer.valueOf(id));
-        }
-        else
+        } else
             LOG.warn("no teaches", id);
         throw new TeachesException(id);
 
 
     }
+
     @RequestMapping(value = "/teaches/", method = RequestMethod.DELETE)
     public void deleteAll() {
         LOG.info("Deleting all teaches");

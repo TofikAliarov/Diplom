@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "student", schema = "markcheck")
+@Table(name = "student", schema = "markcheck", catalog = "")
 public class StudentEntity {
     private int id;
     private String login;
@@ -12,7 +12,7 @@ public class StudentEntity {
     private String name;
     private String lastName;
     private String patronymic;
-    private String groupName;
+    private int groupId;
 
     @Id
     @Column(name = "id")
@@ -55,7 +55,7 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "last_Name")
+    @Column(name = "last_name")
     public String getLastName() {
         return lastName;
     }
@@ -75,14 +75,15 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "group_Name")
-    public String getGroupName() {
-        return groupName;
+    @Column(name = "group_id")
+    public int getGroupId() {
+        return groupId;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -90,17 +91,17 @@ public class StudentEntity {
         if (o == null || getClass() != o.getClass()) return false;
         StudentEntity that = (StudentEntity) o;
         return id == that.id &&
+                groupId == that.groupId &&
                 Objects.equals(login, that.login) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(lastName, that.lastName) &&
-                Objects.equals(patronymic, that.patronymic) &&
-                Objects.equals(groupName, that.groupName);
+                Objects.equals(patronymic, that.patronymic);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, login, password, name, lastName, patronymic, groupName);
+        return Objects.hash(id, login, password, name, lastName, patronymic, groupId);
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 21 2019 г., 10:45
+-- Время создания: Апр 22 2019 г., 13:13
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -55,18 +55,20 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groups_name` varchar(5) NOT NULL,
   `teacher_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `teacher_id` (`teacher_id`),
-  KEY `id` (`id`)
+  KEY `id` (`id`),
+  KEY `student_id` (`student_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Дамп данных таблицы `groups`
 --
 
-INSERT INTO `groups` (`id`, `groups_name`, `teacher_id`) VALUES
-(1, 'eedsf', 2),
-(2, 'dsfsd', 1);
+INSERT INTO `groups` (`id`, `groups_name`, `teacher_id`, `student_id`) VALUES
+(1, 'eedsf', 2, 0),
+(2, 'dsfsd', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -110,20 +112,24 @@ CREATE TABLE IF NOT EXISTS `student` (
   `name` varchar(20) COLLATE utf8_bin NOT NULL,
   `last_name` varchar(20) COLLATE utf8_bin NOT NULL,
   `patronymic` varchar(20) COLLATE utf8_bin NOT NULL,
-  `group_name` varchar(5) COLLATE utf8_bin NOT NULL,
+  `group_id` int(5) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Studentid` (`id`),
-  KEY `Groupid` (`group_name`),
+  KEY `Groupid` (`group_id`),
   KEY `Studentid_2` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Дамп данных таблицы `student`
 --
 
-INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`, `group_name`) VALUES
-(2, 's1502', '12345', 'Maria', 'Bugay', 'Anatolievna', ''),
-(1, 's1501', '54321', 'Tofik', 'Aliarv', 'Shamilovich', 'Tm85b');
+INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`, `group_id`) VALUES
+(2, 's1502', '12345', 'Maria', 'Bugay', 'Anatolievna', 1),
+(1, 's1501', '54321', 'Tofik', 'Aliarv', 'Shamilovich', 2),
+(4, 'qwewe', 'qweqwe', 'wqeqwe', 'qweqwe', 'qweqwe', 1),
+(5, 'weqw', 'eqwwqe', 'wqeqw', 'wqeqw', 'wqeq', 2),
+(6, 'wqeqwe', 'wqeqwe', 'qweqwe', 'weqe', 'qweqwe', 1),
+(7, 'wqeqwe', 'qweqwe', 'qwe', 'wqeqe', 'wqeq', 2);
 
 -- --------------------------------------------------------
 

@@ -62,7 +62,7 @@ public class MarksController {
     }
 
     @RequestMapping(value = "/marks/students", method = RequestMethod.GET)
-    public List<MarksEntity> getGetsByStudentId(@RequestParam (value = "id") int studentId) {
+    public List<MarksEntity> getGetsByStudentId(@RequestParam(value = "id") int studentId) {
         LOG.info("Getting all marks for student {}", studentId);
         return marksDao.getByStudentId(studentId);
     }

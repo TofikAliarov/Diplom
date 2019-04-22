@@ -4,11 +4,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "groups", schema = "markcheck", catalog = "")
+@Table(name = "groups", schema = "markcheck")
 public class GroupsEntity {
     private int id;
     private String groupsName;
     private int teacherId;
+    private int studentId;
 
     @Id
     @Column(name = "id")
@@ -40,6 +41,16 @@ public class GroupsEntity {
         this.teacherId = teacherId;
     }
 
+    @Basic
+    @Column(name = "student_id")
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,12 +58,13 @@ public class GroupsEntity {
         GroupsEntity that = (GroupsEntity) o;
         return id == that.id &&
                 teacherId == that.teacherId &&
+                studentId == that.studentId &&
                 Objects.equals(groupsName, that.groupsName);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, groupsName, teacherId);
+        return Objects.hash(id, groupsName, teacherId, studentId);
     }
 }

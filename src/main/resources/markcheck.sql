@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 23 2019 г., 15:57
+-- Время создания: Апр 23 2019 г., 21:00
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -43,32 +43,6 @@ CREATE TABLE IF NOT EXISTS `admin` (
 INSERT INTO `admin` (`id`, `login`, `password`) VALUES
 (1, 'admin1', '12345'),
 (2, 'admin2', '12345');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `groups`
---
-
-DROP TABLE IF EXISTS `groups`;
-CREATE TABLE IF NOT EXISTS `groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `groups_name` varchar(5) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `teacher_id` (`teacher_id`),
-  KEY `id` (`id`),
-  KEY `student_id` (`student_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Дамп данных таблицы `groups`
---
-
-INSERT INTO `groups` (`id`, `groups_name`, `teacher_id`, `student_id`) VALUES
-(1, 'eedsf', 2, 0),
-(2, 'dsfsd', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -130,6 +104,34 @@ INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronym
 (5, 'weqw', 'eqwwqe', 'wqeqw', 'wqeqw', 'wqeq', 2),
 (6, 'wqeqwe', 'wqeqwe', 'qweqwe', 'weqe', 'qweqwe', 1),
 (7, 'wqeqwe', 'qweqwe', 'qwe', 'wqeqe', 'wqeq', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `student_groups`
+--
+
+DROP TABLE IF EXISTS `student_groups`;
+CREATE TABLE IF NOT EXISTS `student_groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `groups_name` varchar(5) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `subject_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `teacher_id` (`teacher_id`),
+  KEY `id` (`id`),
+  KEY `student_id` (`student_id`),
+  KEY `subject_id` (`subject_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `student_groups`
+--
+
+INSERT INTO `student_groups` (`id`, `groups_name`, `teacher_id`, `student_id`, `subject_id`) VALUES
+(1, 'eedsf', 2, 4, '1'),
+(2, 'dsfsd', 1, 4, '2');
 
 -- --------------------------------------------------------
 

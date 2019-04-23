@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
 @CrossOrigin("*")
 @RestController
 public class StudentController {

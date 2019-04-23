@@ -62,4 +62,10 @@ public class SubjectController {
         LOG.info("Creating subject {}", subject);
         return subjectDao.save(subject);
     }
+
+    @RequestMapping(value = "/subjects/teacher", method = RequestMethod.GET)
+    public List<SubjectEntity> getTeachersSubjects(@RequestParam(value = "id") int teacher_id) {
+        LOG.info("Getting all subjects of teacher {}", teacher_id);
+        return subjectDao.getTeachersSubjects(teacher_id);
+    }
 }

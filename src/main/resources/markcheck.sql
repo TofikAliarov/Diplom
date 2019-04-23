@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 22 2019 г., 13:13
+-- Время создания: Апр 23 2019 г., 15:57
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -141,17 +141,21 @@ DROP TABLE IF EXISTS `subject`;
 CREATE TABLE IF NOT EXISTS `subject` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `subject_name` text COLLATE utf8_bin NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `Subjectid` (`id`)
+  KEY `Subjectid` (`id`),
+  KEY `teacher_id` (`teacher_id`),
+  KEY `student_id` (`group_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Дамп данных таблицы `subject`
 --
 
-INSERT INTO `subject` (`id`, `subject_name`) VALUES
-(1, 'Высшая математика'),
-(2, 'Сопромат');
+INSERT INTO `subject` (`id`, `subject_name`, `teacher_id`, `group_id`) VALUES
+(1, 'Высшая математика', 1, 1),
+(2, 'Сопромат', 1, 2);
 
 -- --------------------------------------------------------
 

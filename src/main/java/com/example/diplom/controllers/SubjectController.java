@@ -68,4 +68,6 @@ public class SubjectController {
         LOG.info("Getting all subjects of teacher {}", teacher_id);
         return subjectDao.getTeachersSubjects(teacher_id);
     }
+
+
 }

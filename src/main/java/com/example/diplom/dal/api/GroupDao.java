@@ -10,4 +10,6 @@ import java.util.List;
 
 @Repository
 public interface GroupDao extends JpaRepository<GroupsEntity, Integer> {
+    @Query("SELECT gets FROM GroupsEntity gets WHERE subject_id = :id")
+    public List<GroupsEntity> getGroupsSubjects(@Param("id") int id);
 }

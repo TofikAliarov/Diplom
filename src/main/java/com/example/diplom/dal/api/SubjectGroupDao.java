@@ -10,5 +10,5 @@ import java.util.List;
 public interface SubjectGroupDao extends JpaRepository<SubjectGroupEntity, Integer> {
 
     @Query("SELECT groupId FROM SubjectGroupEntity WHERE subject_id = :id")
-    public List<SubjectGroupEntity> getGroupSubjects(@Param("id") int id);
+    public List<SubjectGroupEntity> getSubjectGroup(@Param("id") int id);
 }

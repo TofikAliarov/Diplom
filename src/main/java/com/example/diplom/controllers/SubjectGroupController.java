@@ -37,8 +37,8 @@ public class SubjectGroupController {
         return subjectGroupDao.save(subjectgroup);
     }
     @RequestMapping(value = "/groups_subject/subjects", method = RequestMethod.GET)
-    public List<SubjectGroupEntity> getGroupSubjects(@RequestParam(value = "id") int subject_id) {
+    public List<SubjectGroupEntity> getSubjectGroup(@RequestParam(value = "id") int subject_id) {
         LOG.info("Getting all group of subject{}", subject_id);
-        return subjectGroupDao.getGroupSubjects(subject_id);
+        return subjectGroupDao.getSubjectGroup(subject_id);
     }
 }

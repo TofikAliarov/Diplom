@@ -1,7 +1,6 @@
 package com.example.diplom.controllers;
 
 import com.example.diplom.dal.api.MarksDao;
-import com.example.diplom.dal.impl.MarksDAOimpl;
 import com.example.diplom.entity.MarksEntity;
 import com.example.diplom.exception.MarksException;
 import org.slf4j.Logger;
@@ -15,9 +14,6 @@ import java.util.Optional;
 @CrossOrigin("*")
 @RestController
 public class MarksController {
-
-    @Autowired
-    MarksDAOimpl marksDAOimpl;
 
     @Autowired
     MarksDao marksDao;
@@ -51,13 +47,13 @@ public class MarksController {
 
     @RequestMapping(value = "/marks/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") String id) {
-        LOG.info("Deleting gets {}", id);
+        LOG.info("Deleting mark {}", id);
         marksDao.deleteById(Integer.decode(id));
     }
 
     @RequestMapping(value = "/marks", method = RequestMethod.POST)
     public MarksEntity create(@RequestBody MarksEntity gets) {
-        LOG.info("Creating gets {}", gets);
+        LOG.info("Creating marks {}", gets);
         return marksDao.save(gets);
     }
 

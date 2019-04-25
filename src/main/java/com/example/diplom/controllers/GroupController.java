@@ -59,14 +59,14 @@ public class GroupController {
     }
 
     @RequestMapping(value = "/groups/subjects", method = RequestMethod.GET)
-    public List<GroupsEntity> getGroupsSubjects(@RequestParam(value = "id") int subject_id) {
-        LOG.info("Getting all group of subject{}", subject_id);
-        return groupDao.getGroupsSubjects(subject_id);
+    public List<GroupsEntity> getGroupsSubjects(@RequestParam(value = "id") int id) {
+        LOG.info("Getting all group of subject{}", id);
+        return groupDao.getGroupsSubjects(id);
     }
 
-    @RequestMapping(value = "/groups/subjects", method = RequestMethod.POST)
-    public GroupsEntity addSubjectId(@RequestParam int groupId, int subjectId) {
-        LOG.info("Adding subject {} to group {}", subjectId, groupId);
-        return groupService.addSubjectToGroup(groupId, subjectId);
-    }
+//    @RequestMapping(value = "/groups/subjects", method = RequestMethod.POST)
+//    public GroupsEntity addSubjectId(@RequestParam int groupId, int subjectId) {
+//        LOG.info("Adding subject {} to group {}", subjectId, groupId);
+//        return groupService.addSubjectToGroup(groupId, subjectId);
+//    }
 }

@@ -1,13 +1,11 @@
 package com.example.diplom.controllers;
 
 import com.example.diplom.dal.api.TeacherDao;
-import com.example.diplom.dal.impl.TeacherDAOimpl;
 import com.example.diplom.entity.TeacherEntity;
 import com.example.diplom.exception.TeacherException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +16,9 @@ import java.util.Optional;
 public class TeacherController {
 
     @Autowired
-    TeacherDAOimpl teacherDAOimpl;
-    @Autowired
     TeacherDao teacherDao;
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-
-    final static Logger LOG = LoggerFactory.getLogger(TeacherController.class);
+   final static Logger LOG = LoggerFactory.getLogger(TeacherController.class);
 
     @RequestMapping(value = "/teachers", method = RequestMethod.GET)
     public List<TeacherEntity> getAll() {

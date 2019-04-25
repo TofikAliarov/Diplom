@@ -1,13 +1,11 @@
 package com.example.diplom.controllers;
 
 import com.example.diplom.dal.api.SubjectDao;
-import com.example.diplom.dal.impl.SubjectDAOimpl;
 import com.example.diplom.entity.SubjectEntity;
 import com.example.diplom.exception.SubjectException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,13 +14,9 @@ import java.util.Optional;
 @CrossOrigin("*")
 @RestController
 public class SubjectController {
-    @Autowired
-    SubjectDAOimpl subjectDAOimpl;
-    @Autowired
-    SubjectDao subjectDao;
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    SubjectDao subjectDao;
 
     final static Logger LOG = LoggerFactory.getLogger(TeacherController.class);
 

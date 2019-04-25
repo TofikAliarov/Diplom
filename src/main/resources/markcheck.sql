@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 23 2019 г., 21:00
+-- Время создания: Апр 25 2019 г., 15:43
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -116,12 +116,11 @@ CREATE TABLE IF NOT EXISTS `student_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groups_name` varchar(5) NOT NULL,
   `teacher_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `subject_id` varchar(45) NOT NULL,
+  `subject_id` varchar(45) DEFAULT NULL,
+  `subject_group_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `teacher_id` (`teacher_id`),
   KEY `id` (`id`),
-  KEY `student_id` (`student_id`),
   KEY `subject_id` (`subject_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -129,9 +128,9 @@ CREATE TABLE IF NOT EXISTS `student_groups` (
 -- Дамп данных таблицы `student_groups`
 --
 
-INSERT INTO `student_groups` (`id`, `groups_name`, `teacher_id`, `student_id`, `subject_id`) VALUES
-(1, 'eedsf', 2, 4, '1'),
-(2, 'dsfsd', 1, 4, '2');
+INSERT INTO `student_groups` (`id`, `groups_name`, `teacher_id`, `subject_id`, `subject_group_id`) VALUES
+(1, 'eedsf', 2, '1 2', NULL),
+(2, 'dsfsd', 1, '2', NULL);
 
 -- --------------------------------------------------------
 
@@ -144,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `subject_name` text COLLATE utf8_bin NOT NULL,
   `teacher_id` int(11) NOT NULL,
-  `group_id` int(11) NOT NULL,
+  `group_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `Subjectid` (`id`),
   KEY `teacher_id` (`teacher_id`),
@@ -158,6 +157,30 @@ CREATE TABLE IF NOT EXISTS `subject` (
 INSERT INTO `subject` (`id`, `subject_name`, `teacher_id`, `group_id`) VALUES
 (1, 'Высшая математика', 1, 1),
 (2, 'Сопромат', 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `subject_group`
+--
+
+DROP TABLE IF EXISTS `subject_group`;
+CREATE TABLE IF NOT EXISTS `subject_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `group_id` (`group_id`,`subject_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `subject_group`
+--
+
+INSERT INTO `subject_group` (`id`, `group_id`, `subject_id`) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -184,31 +207,6 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 INSERT INTO `teacher` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`) VALUES
 (2, 'Konov', '12345', 'Olga', 'Konovalenko', 'Evgenevna'),
 (1, 'Bondar', '12345', 'Marina', 'Bondarenko', 'Alexandrovna');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `teaches`
---
-
-DROP TABLE IF EXISTS `teaches`;
-CREATE TABLE IF NOT EXISTS `teaches` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `teacher_id` int(11) NOT NULL,
-  `group_name` varchar(5) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `Teacherid` (`teacher_id`,`group_name`,`subject_id`),
-  KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Дамп данных таблицы `teaches`
---
-
-INSERT INTO `teaches` (`id`, `teacher_id`, `group_name`, `subject_id`) VALUES
-(1, 1, 'Tm85b', 1),
-(2, 2, 'Tm85b', 2);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

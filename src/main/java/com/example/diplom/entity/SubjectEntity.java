@@ -12,6 +12,10 @@ public class SubjectEntity {
     private int teacherId;
     private int groupId;
 
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
+    }
+
     @Id
     @Column(name = "id")
     public int getId() {

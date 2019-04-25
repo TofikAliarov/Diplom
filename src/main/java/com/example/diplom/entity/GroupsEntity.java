@@ -1,19 +1,19 @@
 package com.example.diplom.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "student_groups", schema = "markcheck")
 public class GroupsEntity {
-
     private int id;
     private String groupsName;
     private int teacherId;
-    private int studentId;
     private String subjectId;
+    private String subjectGroupId;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -23,7 +23,7 @@ public class GroupsEntity {
     }
 
     @Basic
-    @Column(name = "groups_name", nullable = false, length = 5)
+    @Column(name = "groups_name")
     public String getGroupsName() {
         return groupsName;
     }
@@ -33,7 +33,7 @@ public class GroupsEntity {
     }
 
     @Basic
-    @Column(name = "teacher_id", nullable = false)
+    @Column(name = "teacher_id")
     public int getTeacherId() {
         return teacherId;
     }
@@ -43,17 +43,7 @@ public class GroupsEntity {
     }
 
     @Basic
-    @Column(name = "student_id", nullable = false)
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    @Basic
-    @Column(name = "subject_id", length = 45)
+    @Column(name = "subject_id")
     public String getSubjectId() {
         return subjectId;
     }
@@ -62,29 +52,32 @@ public class GroupsEntity {
         this.subjectId = subjectId;
     }
 
+    @Basic
+    @Column(name = "subject_group_id")
+    public String getSubjectGroupId() {
+        return subjectGroupId;
+    }
+
+    public void setSubjectGroupId(String subjectGroupId) {
+        this.subjectGroupId = subjectGroupId;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         GroupsEntity that = (GroupsEntity) o;
-
-        if (id != that.id) return false;
-        if (teacherId != that.teacherId) return false;
-        if (studentId != that.studentId) return false;
-        if (groupsName != null ? !groupsName.equals(that.groupsName) : that.groupsName != null) return false;
-        if (subjectId != null ? !subjectId.equals(that.subjectId) : that.subjectId != null) return false;
-
-        return true;
+        return id == that.id &&
+                teacherId == that.teacherId &&
+                Objects.equals(groupsName, that.groupsName) &&
+                Objects.equals(subjectId, that.subjectId) &&
+                Objects.equals(subjectGroupId, that.subjectGroupId);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (groupsName != null ? groupsName.hashCode() : 0);
-        result = 31 * result + teacherId;
-        result = 31 * result + studentId;
-        result = 31 * result + (subjectId != null ? subjectId.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, groupsName, teacherId, subjectId, subjectGroupId);
     }
 }

@@ -2,14 +2,11 @@ package com.example.diplom.controllers;
 
 
 import com.example.diplom.dal.api.AdminDao;
-import com.example.diplom.dal.impl.AdminDAOimpl;
 import com.example.diplom.entity.AdminEntity;
 import com.example.diplom.exception.AdminException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +17,7 @@ import java.util.Optional;
 public class AdminController {
 
     @Autowired
-    AdminDAOimpl adminDAOimpl;
-    @Autowired
     AdminDao adminDao;
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
     final static Logger LOG = LoggerFactory.getLogger(TeacherController.class);
 

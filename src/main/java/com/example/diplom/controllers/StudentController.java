@@ -1,14 +1,11 @@
 package com.example.diplom.controllers;
 
 import com.example.diplom.dal.api.StudentDao;
-import com.example.diplom.dal.impl.StudentDAOimpl;
 import com.example.diplom.entity.StudentEntity;
 import com.example.diplom.exception.StudentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +15,8 @@ import java.util.Optional;
 @RestController
 public class StudentController {
 
-    @Autowired
-    StudentDAOimpl studentDAOimpl;
-
-    @Autowired
+     @Autowired
     StudentDao studentDao;
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
     final static Logger LOG = LoggerFactory.getLogger(StudentController.class);
 
@@ -70,7 +61,7 @@ public class StudentController {
 
     @RequestMapping(value = "/students/groups", method = RequestMethod.GET)
     public List<StudentEntity> getGetsByStudentId(@RequestParam(value = "id") int group_id) {
-        LOG.info("Getting all of group {}", group_id);
+        LOG.info("Getting all students of group {}", group_id);
         return studentDao.getStudentsGroup(group_id);
     }
 }

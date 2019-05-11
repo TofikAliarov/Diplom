@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 25 2019 г., 15:43
+-- Время создания: Май 11 2019 г., 10:14
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -57,6 +57,8 @@ CREATE TABLE IF NOT EXISTS `marks` (
   `subject_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `mark` int(11) NOT NULL,
+  `theme` varchar(25) DEFAULT NULL,
+  `role` varchar(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Studentid` (`student_id`,`subject_id`),
   KEY `id` (`id`)
@@ -66,11 +68,34 @@ CREATE TABLE IF NOT EXISTS `marks` (
 -- Дамп данных таблицы `marks`
 --
 
-INSERT INTO `marks` (`id`, `student_id`, `subject_id`, `date`, `mark`) VALUES
-(1, 1, 1, '2019-04-01', 5),
-(2, 1, 2, '2019-04-03', 4),
-(3, 2, 2, '2019-04-04', 3),
-(4, 2, 1, '2019-04-01', 3);
+INSERT INTO `marks` (`id`, `student_id`, `subject_id`, `date`, `mark`, `theme`, `role`) VALUES
+(1, 1, 1, '2019-04-01', 5, 'asd', '1'),
+(2, 1, 2, '2019-04-03', 4, 'asd', '1'),
+(3, 2, 2, '2019-04-04', 3, 'ewq', '2'),
+(4, 2, 1, '2019-04-01', 3, 'qwe', '3');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `marks_role`
+--
+
+DROP TABLE IF EXISTS `marks_role`;
+CREATE TABLE IF NOT EXISTS `marks_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `marks_role`
+--
+
+INSERT INTO `marks_role` (`id`, `role`) VALUES
+(1, 'common'),
+(2, 'test'),
+(3, 'semestr');
 
 -- --------------------------------------------------------
 
@@ -91,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   KEY `Studentid` (`id`),
   KEY `Groupid` (`group_id`),
   KEY `Studentid_2` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Дамп данных таблицы `student`
@@ -99,11 +124,21 @@ CREATE TABLE IF NOT EXISTS `student` (
 
 INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`, `group_id`) VALUES
 (2, 's1502', '12345', 'Maria', 'Bugay', 'Anatolievna', 1),
-(1, 's1501', '54321', 'Tofik', 'Aliarv', 'Shamilovich', 2),
-(4, 'qwewe', 'qweqwe', 'wqeqwe', 'qweqwe', 'qweqwe', 1),
-(5, 'weqw', 'eqwwqe', 'wqeqw', 'wqeqw', 'wqeq', 2),
-(6, 'wqeqwe', 'wqeqwe', 'qweqwe', 'weqe', 'qweqwe', 1),
-(7, 'wqeqwe', 'qweqwe', 'qwe', 'wqeqe', 'wqeq', 2);
+(1, 's1501', '54321', 'Tofik', 'Aliarv', 'Shamilovich', 1),
+(9, 's1504', '12345', 'Petro', 'Petrov', 'Petrivovich', 1),
+(8, 's1503', '12345', 'Ivan', 'Ivanov', 'Ivanovich', 1),
+(10, 's1601', '12345', 'Alexey', 'Alexeev', 'Alexeevich', 2),
+(11, 's1602', '12345', 'Nikita', 'Nikitenko', 'Nikitovich', 2),
+(12, 's1603', '12345', 'Maria', 'Kryak', 'Ivanovna', 2),
+(13, 's1604', '12345', 'Olga', 'Pegro', 'Pavlovna', 2),
+(14, 's1701', '12345', 'Maxim', 'Noven', 'Pavlovich', 3),
+(15, 's1702', '12345', 'Stanislav', 'Evreyko', 'Dmitrievich', 3),
+(16, 's1703', '12345', 'Irina', 'Petrash', 'Olegovna', 3),
+(17, 's1704', '12345', 'Natalia', 'Tyshko', 'Ivanovna', 3),
+(18, 's1801', '12345', 'Mihail', 'Kylow', 'Mihailovich', 4),
+(19, 's1802', '12345', 'Ivan', 'Lobov', 'Petrovich', 4),
+(20, 's1803', '12345', 'Marina', 'Ulichova', 'Pavlovna', 4),
+(21, 's1804', '12345', 'Nikolay', 'Sidorov', 'Ivanovich', 4);
 
 -- --------------------------------------------------------
 
@@ -114,23 +149,24 @@ INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronym
 DROP TABLE IF EXISTS `student_groups`;
 CREATE TABLE IF NOT EXISTS `student_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `groups_name` varchar(5) NOT NULL,
+  `groups_name` varchar(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
-  `subject_id` varchar(45) DEFAULT NULL,
   `subject_group_id` varchar(255) DEFAULT NULL,
+  `subject_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `teacher_id` (`teacher_id`),
-  KEY `id` (`id`),
-  KEY `subject_id` (`subject_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Дамп данных таблицы `student_groups`
 --
 
-INSERT INTO `student_groups` (`id`, `groups_name`, `teacher_id`, `subject_id`, `subject_group_id`) VALUES
-(1, 'eedsf', 2, '1 2', NULL),
-(2, 'dsfsd', 1, '2', NULL);
+INSERT INTO `student_groups` (`id`, `groups_name`, `teacher_id`, `subject_group_id`, `subject_id`) VALUES
+(1, 'tm-85b', 7, NULL, NULL),
+(2, 'tm-86b', 6, NULL, NULL),
+(3, 'tm-87b', 8, NULL, NULL),
+(4, 'tm-88b', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -148,15 +184,29 @@ CREATE TABLE IF NOT EXISTS `subject` (
   KEY `Subjectid` (`id`),
   KEY `teacher_id` (`teacher_id`),
   KEY `student_id` (`group_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Дамп данных таблицы `subject`
 --
 
 INSERT INTO `subject` (`id`, `subject_name`, `teacher_id`, `group_id`) VALUES
-(1, 'Высшая математика', 1, 1),
-(2, 'Сопромат', 1, 2);
+(1, 'Высшая математика', 2, 4),
+(2, 'Сопромат', 7, 2),
+(5, 'Искусственный интеллект', 2, 1),
+(6, 'Информационные системы', 7, 1),
+(7, 'Управление ИТ-проектом', 2, 1),
+(8, 'чето то там что естьв  рассписании но я не понимаю', 2, 1),
+(9, 'Сетевые технологии', 3, 2),
+(10, 'Автоматические расчеты деталей магин', 7, 2),
+(11, 'Системный анализ', 2, 2),
+(12, 'Мат. статистика', 2, 2),
+(13, 'Веб технологии', 1, 2),
+(14, 'Исследование ОС', 2, 3),
+(15, 'Вариационка', 2, 3),
+(16, 'Кросс-плат программирование', 3, 3),
+(17, 'Теория вероятности', 2, 3),
+(18, 'Основы проектирования машин', 7, 3);
 
 -- --------------------------------------------------------
 
@@ -198,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `patronymic` varchar(20) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Teacherid` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Дамп данных таблицы `teacher`
@@ -206,7 +256,13 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 
 INSERT INTO `teacher` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`) VALUES
 (2, 'Konov', '12345', 'Olga', 'Konovalenko', 'Evgenevna'),
-(1, 'Bondar', '12345', 'Marina', 'Bondarenko', 'Alexandrovna');
+(1, 'Bondar', '12345', 'Marina', 'Bondarenko', 'Alexandrovna'),
+(3, 'serik', '12345', 'Vladimir', 'Serikov', 'Ivanovich'),
+(4, 'tkach', '12345', 'Nikolay', 'Tkachuk', 'Anatolievich'),
+(5, 'vasil', '12345', 'Anton', 'Vasilyev', 'Yuryevich'),
+(6, 'Bondarenko', '12345', 'Alexey', 'Bondarenko', 'Viktorovich'),
+(7, 'ustin', '12345', 'Alexander', 'Ustinenko', 'Vitalevich'),
+(8, 'grab', '12345', 'Andrey', 'Grabovsky', 'Vladimirovich');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

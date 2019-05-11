@@ -62,6 +62,10 @@ public class SubjectController {
         LOG.info("Getting all subjects of teacher {}", teacher_id);
         return subjectDao.getTeachersSubjects(teacher_id);
     }
-
+    @RequestMapping(value = "/subjects/group", method = RequestMethod.GET)
+    public List<SubjectEntity> getGroupsSubjects(@RequestParam(value = "id") int group_id) {
+        LOG.info("Getting all subjects of group {}", group_id);
+        return subjectDao.getGroupsSubjects(group_id);
+    }
 
 }

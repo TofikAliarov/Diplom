@@ -14,5 +14,7 @@ public interface SubjectDao extends JpaRepository<SubjectEntity, Integer> {
     @Query("SELECT gets FROM SubjectEntity gets WHERE teacher_id = :id")
     public List<SubjectEntity> getTeachersSubjects(@Param("id") int id);
 
+    @Query("SELECT gets FROM SubjectEntity gets WHERE group_id = :id")
+    public List<SubjectEntity> getGroupsSubjects(@Param("id") int id);
 
 }

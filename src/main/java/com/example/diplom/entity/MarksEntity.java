@@ -12,6 +12,8 @@ public class MarksEntity {
     private int subjectId;
     private Date date;
     private int mark;
+    private String theme;
+    private String role;
 
     @Id
     @Column(name = "id")
@@ -79,5 +81,25 @@ public class MarksEntity {
     public int hashCode() {
 
         return Objects.hash(id, studentId, subjectId, date, mark);
+    }
+
+    @Basic
+    @Column(name = "theme")
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    @Basic
+    @Column(name = "role")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

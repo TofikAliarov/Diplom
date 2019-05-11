@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "subject", schema = "markcheck")
+@Table(name = "subject", schema = "markcheck", catalog = "")
 public class SubjectEntity {
 
     private int id;
     private String subjectName;
     private int teacherId;
     private int groupId;
+    private String groupName;
 
     public void setGroupId(Integer groupId) {
         this.groupId = groupId;
@@ -71,5 +72,15 @@ public class SubjectEntity {
     public int hashCode() {
 
         return Objects.hash(id, subjectName, teacherId, groupId);
+    }
+
+    @Basic
+    @Column(name = "group_name")
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }

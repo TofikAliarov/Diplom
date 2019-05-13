@@ -13,7 +13,7 @@ public class MarksEntity {
     private Date date;
     private int mark;
     private String theme;
-    private String role;
+    private int role;
 
     @Id
     @Column(name = "id")
@@ -65,24 +65,6 @@ public class MarksEntity {
         this.mark = mark;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MarksEntity that = (MarksEntity) o;
-        return id == that.id &&
-                studentId == that.studentId &&
-                subjectId == that.subjectId &&
-                mark == that.mark &&
-                Objects.equals(date, that.date);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, studentId, subjectId, date, mark);
-    }
-
     @Basic
     @Column(name = "theme")
     public String getTheme() {
@@ -95,11 +77,31 @@ public class MarksEntity {
 
     @Basic
     @Column(name = "role")
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MarksEntity that = (MarksEntity) o;
+        return id == that.id &&
+                studentId == that.studentId &&
+                subjectId == that.subjectId &&
+                mark == that.mark &&
+                role == that.role &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(theme, that.theme);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, studentId, subjectId, date, mark, theme, role);
     }
 }

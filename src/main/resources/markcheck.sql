@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 11 2019 г., 14:08
+-- Время создания: Май 14 2019 г., 20:55
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -58,21 +58,27 @@ CREATE TABLE IF NOT EXISTS `marks` (
   `date` date NOT NULL,
   `mark` int(11) NOT NULL,
   `theme` varchar(25) DEFAULT NULL,
-  `role` varchar(11) NOT NULL,
+  `role` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Studentid` (`student_id`,`subject_id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Дамп данных таблицы `marks`
 --
 
 INSERT INTO `marks` (`id`, `student_id`, `subject_id`, `date`, `mark`, `theme`, `role`) VALUES
-(1, 1, 1, '2019-04-01', 5, 'asd', '1'),
-(2, 1, 2, '2019-04-03', 4, 'asd', '1'),
-(3, 2, 2, '2019-04-04', 3, 'ewq', '2'),
-(4, 2, 1, '2019-04-01', 3, 'qwe', '3');
+(1, 13, 2, '2019-04-01', 5, 'asd', 1),
+(2, 13, 2, '2019-04-03', 4, 'asd', 1),
+(3, 13, 2, '2019-04-04', 3, 'ewq', 2),
+(4, 13, 2, '2019-04-01', 3, 'qwe', 3),
+(5, 13, 2, '2019-05-08', 4, NULL, 1),
+(6, 13, 2, '2019-05-15', 4, NULL, 1),
+(7, 13, 2, '2019-05-21', 4, NULL, 2),
+(8, 13, 2, '2019-05-09', 5, NULL, 2),
+(9, 13, 2, '2019-05-11', 3, NULL, 2),
+(10, 13, 2, '2019-05-09', 3, NULL, 2);
 
 -- --------------------------------------------------------
 

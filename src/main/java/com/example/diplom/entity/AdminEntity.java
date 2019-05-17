@@ -9,6 +9,7 @@ public class AdminEntity {
     private int id;
     private String login;
     private String password;
+    private int userRole;
 
     @Id
     @Column(name = "id")
@@ -54,5 +55,15 @@ public class AdminEntity {
     public int hashCode() {
 
         return Objects.hash(id, login, password);
+    }
+
+    @Basic
+    @Column(name = "user_role")
+    public int getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(int userRole) {
+        this.userRole = userRole;
     }
 }

@@ -7,15 +7,12 @@ import java.util.Objects;
 @Table(name = "subject", schema = "markcheck", catalog = "")
 public class SubjectEntity {
 
+
     private int id;
     private String subjectName;
     private int teacherId;
-    private int groupId;
+    private Integer groupId;
     private String groupName;
-
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
-    }
 
     @Id
     @Column(name = "id")
@@ -49,29 +46,12 @@ public class SubjectEntity {
 
     @Basic
     @Column(name = "group_id")
-    public int getGroupId() {
+    public Integer getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(int groupId) {
+    public void setGroupId(Integer groupId) {
         this.groupId = groupId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SubjectEntity that = (SubjectEntity) o;
-        return id == that.id &&
-                teacherId == that.teacherId &&
-                groupId == that.groupId &&
-                Objects.equals(subjectName, that.subjectName);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, subjectName, teacherId, groupId);
     }
 
     @Basic
@@ -82,5 +62,23 @@ public class SubjectEntity {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SubjectEntity that = (SubjectEntity) o;
+        return id == that.id &&
+                teacherId == that.teacherId &&
+                Objects.equals(subjectName, that.subjectName) &&
+                Objects.equals(groupId, that.groupId) &&
+                Objects.equals(groupName, that.groupName);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, subjectName, teacherId, groupId, groupName);
     }
 }

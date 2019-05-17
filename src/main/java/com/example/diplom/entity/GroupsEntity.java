@@ -9,8 +9,6 @@ public class GroupsEntity {
     private int id;
     private String groupsName;
     private int teacherId;
-    private String subjectId;
-    private String subjectGroupId;
 
     @Id
     @Column(name = "id")
@@ -42,27 +40,6 @@ public class GroupsEntity {
         this.teacherId = teacherId;
     }
 
-    @Basic
-    @Column(name = "subject_id")
-    public String getSubjectId() {
-        return subjectId;
-    }
-
-    public void setSubjectId(String subjectId) {
-        this.subjectId = subjectId;
-    }
-
-    @Basic
-    @Column(name = "subject_group_id")
-    public String getSubjectGroupId() {
-        return subjectGroupId;
-    }
-
-    public void setSubjectGroupId(String subjectGroupId) {
-        this.subjectGroupId = subjectGroupId;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,14 +47,12 @@ public class GroupsEntity {
         GroupsEntity that = (GroupsEntity) o;
         return id == that.id &&
                 teacherId == that.teacherId &&
-                Objects.equals(groupsName, that.groupsName) &&
-                Objects.equals(subjectId, that.subjectId) &&
-                Objects.equals(subjectGroupId, that.subjectGroupId);
+                Objects.equals(groupsName, that.groupsName);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, groupsName, teacherId, subjectId, subjectGroupId);
+        return Objects.hash(id, groupsName, teacherId);
     }
 }

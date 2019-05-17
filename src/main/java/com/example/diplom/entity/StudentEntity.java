@@ -13,6 +13,7 @@ public class StudentEntity {
     private String lastName;
     private String patronymic;
     private int groupId;
+    private int userRole;
 
     @Id
     @Column(name = "id")
@@ -84,7 +85,6 @@ public class StudentEntity {
         this.groupId = groupId;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,5 +103,15 @@ public class StudentEntity {
     public int hashCode() {
 
         return Objects.hash(id, login, password, name, lastName, patronymic, groupId);
+    }
+
+    @Basic
+    @Column(name = "user_role")
+    public int getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(int userRole) {
+        this.userRole = userRole;
     }
 }

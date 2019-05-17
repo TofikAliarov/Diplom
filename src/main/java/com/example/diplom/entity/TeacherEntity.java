@@ -12,6 +12,7 @@ public class TeacherEntity {
     private String name;
     private String lastName;
     private String patronymic;
+    private int userRole;
 
     @Id
     @Column(name = "id")
@@ -90,5 +91,15 @@ public class TeacherEntity {
     public int hashCode() {
 
         return Objects.hash(id, login, password, name, lastName, patronymic);
+    }
+
+    @Basic
+    @Column(name = "user_role")
+    public int getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(int userRole) {
+        this.userRole = userRole;
     }
 }

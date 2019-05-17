@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 14 2019 г., 20:55
+-- Время создания: Май 17 2019 г., 15:07
 -- Версия сервера: 5.7.24
 -- Версия PHP: 7.2.14
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `login` varchar(16) NOT NULL,
   `password` varchar(16) NOT NULL,
+  `user_role` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -40,9 +41,9 @@ CREATE TABLE IF NOT EXISTS `admin` (
 -- Дамп данных таблицы `admin`
 --
 
-INSERT INTO `admin` (`id`, `login`, `password`) VALUES
-(1, 'admin1', '12345'),
-(2, 'admin2', '12345');
+INSERT INTO `admin` (`id`, `login`, `password`, `user_role`) VALUES
+(1, 'admin1', '12345', 1),
+(2, 'admin2', '12345', 1);
 
 -- --------------------------------------------------------
 
@@ -118,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `last_name` varchar(20) COLLATE utf8_bin NOT NULL,
   `patronymic` varchar(20) COLLATE utf8_bin NOT NULL,
   `group_id` int(5) NOT NULL,
+  `user_role` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Studentid` (`id`),
   KEY `Groupid` (`group_id`),
@@ -128,23 +130,23 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Дамп данных таблицы `student`
 --
 
-INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`, `group_id`) VALUES
-(2, 's1502', '12345', 'Maria', 'Bugay', 'Anatolievna', 1),
-(1, 's1501', '54321', 'Tofik', 'Aliarv', 'Shamilovich', 1),
-(9, 's1504', '12345', 'Petro', 'Petrov', 'Petrivovich', 1),
-(8, 's1503', '12345', 'Ivan', 'Ivanov', 'Ivanovich', 1),
-(10, 's1601', '12345', 'Alexey', 'Alexeev', 'Alexeevich', 2),
-(11, 's1602', '12345', 'Nikita', 'Nikitenko', 'Nikitovich', 2),
-(12, 's1603', '12345', 'Maria', 'Kryak', 'Ivanovna', 2),
-(13, 's1604', '12345', 'Olga', 'Pegro', 'Pavlovna', 2),
-(14, 's1701', '12345', 'Maxim', 'Noven', 'Pavlovich', 3),
-(15, 's1702', '12345', 'Stanislav', 'Evreyko', 'Dmitrievich', 3),
-(16, 's1703', '12345', 'Irina', 'Petrash', 'Olegovna', 3),
-(17, 's1704', '12345', 'Natalia', 'Tyshko', 'Ivanovna', 3),
-(18, 's1801', '12345', 'Mihail', 'Kylow', 'Mihailovich', 4),
-(19, 's1802', '12345', 'Ivan', 'Lobov', 'Petrovich', 4),
-(20, 's1803', '12345', 'Marina', 'Ulichova', 'Pavlovna', 4),
-(21, 's1804', '12345', 'Nikolay', 'Sidorov', 'Ivanovich', 4);
+INSERT INTO `student` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`, `group_id`, `user_role`) VALUES
+(2, 's1502', '12345', 'Maria', 'Bugay', 'Anatolievna', 1, 2),
+(1, 's1501', '54321', 'Tofik', 'Aliarv', 'Shamilovich', 1, 2),
+(9, 's1504', '12345', 'Petro', 'Petrov', 'Petrivovich', 1, 2),
+(8, 's1503', '12345', 'Ivan', 'Ivanov', 'Ivanovich', 1, 2),
+(10, 's1601', '12345', 'Alexey', 'Alexeev', 'Alexeevich', 2, 2),
+(11, 's1602', '12345', 'Nikita', 'Nikitenko', 'Nikitovich', 2, 2),
+(12, 's1603', '12345', 'Maria', 'Kryak', 'Ivanovna', 2, 2),
+(13, 's1604', '12345', 'Olga', 'Pegro', 'Pavlovna', 2, 2),
+(14, 's1701', '12345', 'Maxim', 'Noven', 'Pavlovich', 3, 2),
+(15, 's1702', '12345', 'Stanislav', 'Evreyko', 'Dmitrievich', 3, 2),
+(16, 's1703', '12345', 'Irina', 'Petrash', 'Olegovna', 3, 2),
+(17, 's1704', '12345', 'Natalia', 'Tyshko', 'Ivanovna', 3, 2),
+(18, 's1801', '12345', 'Mihail', 'Kylow', 'Mihailovich', 4, 2),
+(19, 's1802', '12345', 'Ivan', 'Lobov', 'Petrovich', 4, 2),
+(20, 's1803', '12345', 'Marina', 'Ulichova', 'Pavlovna', 4, 2),
+(21, 's1804', '12345', 'Nikolay', 'Sidorov', 'Ivanovich', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -157,8 +159,6 @@ CREATE TABLE IF NOT EXISTS `student_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `groups_name` varchar(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
-  `subject_group_id` varchar(255) DEFAULT NULL,
-  `subject_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `groups_name` (`groups_name`),
   KEY `teacher_id` (`teacher_id`),
@@ -169,11 +169,11 @@ CREATE TABLE IF NOT EXISTS `student_groups` (
 -- Дамп данных таблицы `student_groups`
 --
 
-INSERT INTO `student_groups` (`id`, `groups_name`, `teacher_id`, `subject_group_id`, `subject_id`) VALUES
-(1, 'tm-85b', 7, NULL, NULL),
-(2, 'tm-86b', 6, NULL, NULL),
-(3, 'tm-87b', 8, NULL, NULL),
-(4, 'tm-88b', 1, NULL, NULL);
+INSERT INTO `student_groups` (`id`, `groups_name`, `teacher_id`) VALUES
+(1, 'tm-85b', 7),
+(2, 'tm-86b', 6),
+(3, 'tm-87b', 8),
+(4, 'tm-88b', 1);
 
 -- --------------------------------------------------------
 
@@ -219,30 +219,6 @@ INSERT INTO `subject` (`id`, `subject_name`, `teacher_id`, `group_id`, `group_na
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `subject_group`
---
-
-DROP TABLE IF EXISTS `subject_group`;
-CREATE TABLE IF NOT EXISTS `subject_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `group_id` (`group_id`,`subject_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Дамп данных таблицы `subject_group`
---
-
-INSERT INTO `subject_group` (`id`, `group_id`, `subject_id`) VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 1, 2);
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `teacher`
 --
 
@@ -254,6 +230,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
   `name` varchar(20) COLLATE utf8_bin NOT NULL,
   `last_name` varchar(20) COLLATE utf8_bin NOT NULL,
   `patronymic` varchar(20) COLLATE utf8_bin NOT NULL,
+  `user_role` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `Teacherid` (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -262,15 +239,37 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 -- Дамп данных таблицы `teacher`
 --
 
-INSERT INTO `teacher` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`) VALUES
-(2, 'Konov', '12345', 'Olga', 'Konovalenko', 'Evgenevna'),
-(1, 'Bondar', '12345', 'Marina', 'Bondarenko', 'Alexandrovna'),
-(3, 'serik', '12345', 'Vladimir', 'Serikov', 'Ivanovich'),
-(4, 'tkach', '12345', 'Nikolay', 'Tkachuk', 'Anatolievich'),
-(5, 'vasil', '12345', 'Anton', 'Vasilyev', 'Yuryevich'),
-(6, 'Bondarenko', '12345', 'Alexey', 'Bondarenko', 'Viktorovich'),
-(7, 'ustin', '12345', 'Alexander', 'Ustinenko', 'Vitalevich'),
-(8, 'grab', '12345', 'Andrey', 'Grabovsky', 'Vladimirovich');
+INSERT INTO `teacher` (`id`, `login`, `password`, `name`, `last_name`, `patronymic`, `user_role`) VALUES
+(2, 'Konov', '12345', 'Olga', 'Konovalenko', 'Evgenevna', 3),
+(1, 'Bondar', '12345', 'Marina', 'Bondarenko', 'Alexandrovna', 3),
+(3, 'serik', '12345', 'Vladimir', 'Serikov', 'Ivanovich', 3),
+(4, 'tkach', '12345', 'Nikolay', 'Tkachuk', 'Anatolievich', 3),
+(5, 'vasil', '12345', 'Anton', 'Vasilyev', 'Yuryevich', 3),
+(6, 'Bondarenko', '12345', 'Alexey', 'Bondarenko', 'Viktorovich', 3),
+(7, 'ustin', '12345', 'Alexander', 'Ustinenko', 'Vitalevich', 3),
+(8, 'grab', '12345', 'Andrey', 'Grabovsky', 'Vladimirovich', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user_role`
+--
+
+DROP TABLE IF EXISTS `user_role`;
+CREATE TABLE IF NOT EXISTS `user_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_role` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Дамп данных таблицы `user_role`
+--
+
+INSERT INTO `user_role` (`id`, `user_role`) VALUES
+(1, 'ADMIN'),
+(2, 'STUDENT'),
+(3, 'TEACHER');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@ package com.example.diplom.controllers;
 import com.example.diplom.dal.api.GroupDao;
 import com.example.diplom.entity.GroupsEntity;
 import com.example.diplom.exception.GroupException;
-import com.example.diplom.service.GroupService;
+//import com.example.diplom.service.GroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ public class GroupController {
     @Autowired
     GroupDao groupDao;
 
-    @Autowired
-    GroupService groupService;
+//    @Autowired
+//    GroupService groupService;
 
     private final static Logger LOG = LoggerFactory.getLogger(GroupController.class);
 

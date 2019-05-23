@@ -14,6 +14,7 @@ public class MarksEntity {
     private int mark;
     private String theme;
     private int role;
+    private String roleName;
 
     @Id
     @Column(name = "id")
@@ -103,5 +104,15 @@ public class MarksEntity {
     public int hashCode() {
 
         return Objects.hash(id, studentId, subjectId, date, mark, theme, role);
+    }
+
+    @Basic
+    @Column(name = "role_name")
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

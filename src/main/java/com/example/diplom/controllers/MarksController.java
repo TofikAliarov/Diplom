@@ -69,9 +69,10 @@ public class MarksController {
         LOG.info("Getting all marks for student {} and subject {}", studentId, subjectId);
         return marksDao.getBySubjectIdAndStudentId(studentId, subjectId);
     }
+
     @RequestMapping(value = "/marks/{id}/role", method = RequestMethod.GET)
     public List<MarksEntity> getBySubjectIdAndRoleId(@PathVariable("id") int subjectId,
-                                                            @RequestParam(value = "id") int role) {
+                                                     @RequestParam(value = "id") int role) {
         LOG.info("Getting all marks for role {} and subject {}", role, subjectId);
         return marksDao.getBySubjectIdAndRoleId(role, subjectId);
     }

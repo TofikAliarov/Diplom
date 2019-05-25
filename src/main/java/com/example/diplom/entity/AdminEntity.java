@@ -1,5 +1,7 @@
 package com.example.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -8,7 +10,10 @@ import java.util.Objects;
 public class AdminEntity {
     private int id;
     private String login;
+
+    @JsonIgnore
     private String password;
+
     private int userRole;
 
     @Id

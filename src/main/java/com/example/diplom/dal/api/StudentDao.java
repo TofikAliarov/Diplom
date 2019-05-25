@@ -12,7 +12,10 @@ import java.util.Optional;
 
 @Repository
 public interface StudentDao extends JpaRepository<StudentEntity, Integer> {
-    @Query("SELECT gets FROM StudentEntity gets WHERE group_id = :id")
-    public List<StudentEntity> getStudentsGroup(@Param("id") int id);
 
+    @Query("SELECT gets FROM StudentEntity gets WHERE group_id = :id")
+    List<StudentEntity> getStudentsGroup(@Param("id") int id);
+
+    @Query("SELECT student FROM StudentEntity student WHERE student.login = :login")
+    StudentEntity getStudentByLogin(@Param("login") String login);
 }

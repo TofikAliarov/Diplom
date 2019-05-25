@@ -1,5 +1,7 @@
 package com.example.diplom.entity;
 
+import com.example.diplom.entity.enums.Role;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,7 +9,7 @@ import java.util.Objects;
 @Table(name = "user_role", schema = "markcheck")
 public class UserRoleEntity {
     private int id;
-    private String userRole;
+    private Role userRole;
 
     @Id
     @Column(name = "id")
@@ -21,11 +23,11 @@ public class UserRoleEntity {
 
     @Basic
     @Column(name = "user_role")
-    public String getUserRole() {
+    public Role getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(String userRole) {
+    public void setUserRole(Role userRole) {
         this.userRole = userRole;
     }
 

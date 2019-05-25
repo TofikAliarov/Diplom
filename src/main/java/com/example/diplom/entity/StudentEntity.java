@@ -1,14 +1,22 @@
 package com.example.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 @Table(name = "student", schema = "markcheck")
 public class StudentEntity {
     private int id;
+
+    @NotNull
     private String login;
+
+    @JsonIgnore
     private String password;
+
     private String name;
     private String lastName;
     private String patronymic;

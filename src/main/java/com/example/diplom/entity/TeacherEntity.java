@@ -1,17 +1,27 @@
 package com.example.diplom.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "teacher", schema = "markcheck")
 public class TeacherEntity {
+
     private int id;
+
     private String login;
+
+    @JsonIgnore
     private String password;
+
     private String name;
+
     private String lastName;
+
     private String patronymic;
+
     private int userRole;
 
     @Id

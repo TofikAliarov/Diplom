@@ -7,12 +7,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Repository
 public interface StudentDao extends JpaRepository<StudentEntity, Integer> {
     @Query("SELECT gets FROM StudentEntity gets WHERE group_id = :id")
-    public List<StudentEntity> getStudentsGroup(@Param("id") int id);
+    List<StudentEntity> getStudentsGroup(@Param("id") int id);
+
+    @Query("SELECT student FROM StudentEntity student WHERE login = :log AND password = :pass")
+    StudentEntity login(@Param("log") String log, @Param("pass") String pass);
 
 }

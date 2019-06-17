@@ -3,6 +3,7 @@ package com.example.diplom.controllers;
 import com.example.diplom.dal.api.MarksDao;
 import com.example.diplom.entity.MarksEntity;
 import com.example.diplom.exception.MarksException;
+import com.example.diplom.service.MarksService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class MarksController {
 
     @Autowired
     MarksDao marksDao;
+
+    @Autowired
+    MarksService marksService;
 
     final static Logger LOG = LoggerFactory.getLogger(TeacherController.class);
 
@@ -54,6 +58,7 @@ public class MarksController {
     @RequestMapping(value = "/marks", method = RequestMethod.POST)
     public MarksEntity create(@RequestBody MarksEntity gets) {
         LOG.info("Creating marks {}", gets);
+        marksService.generateMarksForAllStudentsInGroup(gets);
         return marksDao.save(gets);
     }
 
@@ -69,9 +74,10 @@ public class MarksController {
         LOG.info("Getting all marks for student {} and subject {}", studentId, subjectId);
         return marksDao.getBySubjectIdAndStudentId(studentId, subjectId);
     }
+
     @RequestMapping(value = "/marks/{id}/role", method = RequestMethod.GET)
     public List<MarksEntity> getBySubjectIdAndRoleId(@PathVariable("id") int subjectId,
-                                                            @RequestParam(value = "id") int role) {
+                                                     @RequestParam(value = "id") int role) {
         LOG.info("Getting all marks for role {} and subject {}", role, subjectId);
         return marksDao.getBySubjectIdAndRoleId(role, subjectId);
     }

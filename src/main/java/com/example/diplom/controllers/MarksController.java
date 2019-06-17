@@ -75,10 +75,11 @@ public class MarksController {
         return marksDao.getBySubjectIdAndStudentId(studentId, subjectId);
     }
 
-    @RequestMapping(value = "/marks/{id}/role", method = RequestMethod.GET)
+    @RequestMapping(value = "/marks/{id}/role/{id}/student", method = RequestMethod.GET)
     public List<MarksEntity> getBySubjectIdAndRoleId(@PathVariable("id") int subjectId,
-                                                     @RequestParam(value = "id") int role) {
-        LOG.info("Getting all marks for role {} and subject {}", role, subjectId);
-        return marksDao.getBySubjectIdAndRoleId(role, subjectId);
+                                                     @PathVariable(value = "id") int role,
+                                                     @RequestParam(value = "id") int studentId) {
+        LOG.info("Getting all marks for role {} and subject {} and student {}", role, subjectId);
+        return marksDao.getBySubjectIdAndRoleId(role, subjectId, studentId);
     }
 }

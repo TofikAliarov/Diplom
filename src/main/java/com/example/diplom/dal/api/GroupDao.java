@@ -14,5 +14,6 @@ public interface GroupDao extends JpaRepository<GroupsEntity, Integer> {
     @Query("SELECT gets FROM GroupsEntity gets WHERE subject_id = :id")
     public List<GroupsEntity> getGroupsSubjects(@Param("id") int id);
 
-
+    @Query("SELECT gets FROM GroupsEntity gets WHERE teacher_id = :id")
+    public List<GroupsEntity> getTeachersGroups(@Param("id") int id);
 }

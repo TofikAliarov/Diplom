@@ -63,7 +63,11 @@ public class GroupController {
         LOG.info("Getting all group of subject{}", id);
         return groupDao.getGroupsSubjects(id);
     }
-
+    @RequestMapping(value = "/groups/teacher", method = RequestMethod.GET)
+    public List<GroupsEntity> getTeachersGroups(@RequestParam(value = "id") int teacher_id) {
+        LOG.info("Getting group of teacher{}", teacher_id);
+        return groupDao.getTeachersGroups(teacher_id);
+    }
 //    @RequestMapping(value = "/groups/subjects", method = RequestMethod.POST)
 //    public GroupsEntity addSubjectId(@RequestParam int groupId, int subjectId) {
 //        LOG.info("Adding subject {} to group {}", subjectId, groupId);
